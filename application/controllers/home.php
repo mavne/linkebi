@@ -4,7 +4,9 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('home_message');
+		$this->load->model('md_commerce');
+		$data["commerce"] = $this->md_commerce->out();
+		$this->load->view('home_message', $data);
 	}
 	
 }

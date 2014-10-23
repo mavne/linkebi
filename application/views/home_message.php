@@ -8,49 +8,18 @@
 			<div class="span12">
 
               <div id="owl-example" class="owl-carousel">
-
-                <div class="item darkCyan">
-                  <img src="assets/img/website-logos/logo.png" width="100%" alt="404.ge" />
-                    <h3>Studio 404</h3>
-                    <h4><a href="http://404.ge" target="_blank">www.404.ge</a></h4>
-                </div>
-
-                <div class="item darkCyan">
-                  <img src="assets/img/website-logos/logo.png" width="100%" alt="404.ge" />
-                    <h3>Studio 404</h3>
-                    <h4><a href="http://404.ge" target="_blank">www.404.ge</a></h4>
-                </div>
-
-                <div class="item darkCyan">
-                  <img src="assets/img/website-logos/logo.png" width="100%" alt="404.ge" />
-                    <h3>Studio 404</h3>
-                    <h4><a href="http://404.ge" target="_blank">www.404.ge</a></h4>
-                </div>
-
-                <div class="item darkCyan">
-                  <img src="assets/img/website-logos/logo.png" width="100%" alt="404.ge" />
-                    <h3>Studio 404</h3>
-                    <h4><a href="http://404.ge" target="_blank">www.404.ge</a></h4>
-                </div>
-
-                <div class="item darkCyan">
-                  <img src="assets/img/website-logos/logo.png" width="100%" alt="404.ge" />
-                    <h3>Studio 404</h3>
-                    <h4><a href="http://404.ge" target="_blank">www.404.ge</a></h4>
-                </div>
-
-                <div class="item darkCyan">
-                  <img src="assets/img/website-logos/logo.png" width="100%" alt="404.ge" />
-                    <h3>Studio 404</h3>
-                    <h4><a href="http://404.ge" target="_blank">www.404.ge</a></h4>
-                </div>
-
-                <div class="item darkCyan">
-                  <img src="assets/img/website-logos/logo.png" width="100%" alt="404.ge" />
-                    <h3>Studio 404</h3>
-                    <h4><a href="http://404.ge" target="_blank">www.404.ge</a></h4>
-                </div>
-                
+              	<?php
+              	foreach($commerce as $row)
+              	{
+              	?>
+	                <div class="item darkCyan">
+	                  <img src="<?php echo $row->img; ?>" width="100%" alt="404.ge" />
+	                    <h3><?php echo $row->title; ?></h3>
+	                    <h4><a href="<?php echo $row->url; ?>" target="_blank"><?php echo $row->url; ?></a></h4>
+	                </div>
+                <?php
+            	}
+                ?>
 
               </div>
 
