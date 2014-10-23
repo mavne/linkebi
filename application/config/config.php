@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'links.404.ge';
+$config['base_url']	= '';
 
 /*
 |--------------------------------------------------------------------------
