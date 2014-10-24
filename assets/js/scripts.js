@@ -52,4 +52,12 @@ $(document).ready(function(){
 		location.href = "/home";
 	});
 
+	$("#submit_reg").click(function(){
+		$("#registration").submit();
+	});
+
+	$("#submit_auth").click(function(){
+		$("#authorition").submit();
+	});
+
 });

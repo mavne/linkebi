@@ -8,11 +8,14 @@
 					</div>
 					<div class="col-lg-6 links-float-right">
 						<nav class="link-navigation">
-							<ul>
-								
-								<!-- <li class="links-add-site"><a href="">დამატება</a></li>
-								<li class="links-contact"><a href="">კონტაქტი</a></li> -->
+							<ul>	
 								<?php
+								if($username){
+									echo '<li class="links-myspace"><a href="myspace">პირადი სივრცე</a></li>';
+								}else{
+									echo '<li class="links-myspace"><a href="registration">პირადი სივრცე</a></li>';
+								}
+								
 								foreach($nav as $row)
 								{
 									echo '<li class="'.$row->{"icon"}.'"><a href="'.$row->{"url"}.'">'.$row->{"name"}.'</a></li>';
