@@ -73,7 +73,7 @@ class md_form extends CI_Model
 			}
 			else
 			{
-				$out["error_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
+				$out["error_message_auth"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
 			}
 		}
 		return $out;
@@ -133,7 +133,7 @@ class md_form extends CI_Model
 			}
 			$this->session->set_userdata($newdata);
 			$this->load->model("md_redir");
-			$this->md_redir->gotourl("/home");
+			$this->md_redir->gotourl("/myspace");
 		}else{
 			return false;
 		}

@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class registration extends CI_Controller
 {
 	public function index()
@@ -13,6 +13,10 @@ class registration extends CI_Controller
 		// load navigation 
 		$this->load->model("md_navigation");
 		$data["nav"] = $this->md_navigation->nav();
+		
+		//unset sessions
+		$array_unset = array('ip_address'=>'', 'namelname'=>'', 'email'=>'', 'username'=>'', 'registration_time'=>'', 'last_login'=>'');
+		$this->session->unset_userdata($array_unset);
 
 		if(isset($_POST["form_type"]))
 		{
