@@ -221,6 +221,7 @@ body{
 	margin: 0 auto 20px auto;
 	padding: 0;
 	width: 1260px;
+	min-height: 250px;
 }
 .link-webkit-shadow{
 	border: solid 1px #ccc;
@@ -240,7 +241,6 @@ body{
 	padding: 0;
 	width: 100%;
 	background: #fff;
-	min-height: 250px;
 }
 .page-header{
 	margin: 0;

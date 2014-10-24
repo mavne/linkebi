@@ -45,7 +45,7 @@
 						<div class="datas">
 							<p class="data"><?php echo $row->{"name"}; ?></p>
 						</div>
-						<div class="counter">0</div>
+						<div class="counter"><?php echo $row->{"counts"}; ?></div>
 					</div>
 				</div>
 			<?php

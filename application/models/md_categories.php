@@ -3,7 +3,14 @@ class md_categories extends CI_Model{
 	public function cats($cat_slug = false)
 	{
 		if(!$cat_slug){
-			$query = $this->db->query("SELECT `id`,`name`,`icon`,`slug` FROM `categories` WHERE `status`!=1 ORDER BY `position` ASC");
+			$query = $this->db->query("SELECT 
+			`categories`.`id` AS cats,
+			`categories`.`name` AS name,
+			`categories`.`icon` AS icon,
+			`categories`.`slug` AS slug,
+			(SELECT COUNT(`websites`.`id`) FROM `websites` WHERE `websites`.`status`!=1 AND `websites`.`allowed`!=0 AND `cat_id`= `categories`.`id`) AS counts
+			FROM `categories`
+			WHERE `categories`.`status`!=1 ORDER BY `categories`.`position` ASC");
 			$out = $query->result();
 		}
 		else 
@@ -20,7 +27,8 @@ class md_categories extends CI_Model{
 											`categories`.`slug`='".mysql_real_escape_string($cat_slug)."' AND 
 											`categories`.`status`!=1  AND 
 											`categories`.`id`=`websites`.`cat_id` AND 
-											`websites`.`status`!=1 
+											`websites`.`status`!=1 AND 
+											`websites`.`allowed`!=0
 											ORDER BY `clicks` DESC");
 			$out = $query->result();
 		}

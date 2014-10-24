@@ -5,6 +5,9 @@ class Categories extends CI_Controller {
 
 	public function index()
 	{
+		// load navigation 
+		$this->load->model("md_navigation");
+		$data["nav"] = $this->md_navigation->nav();
 		// load commerce
 		$this->load->model('md_commerce');
 		// commerce
@@ -79,6 +82,9 @@ class Categories extends CI_Controller {
 
 	public function show_view($cat)
 	{
+		// load navigation 
+		$this->load->model("md_navigation");
+		$data["nav"] = $this->md_navigation->nav();
 		// load commerce
 		$this->load->model('md_commerce');
 		// commerce
