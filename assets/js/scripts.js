@@ -29,21 +29,27 @@ $(document).ready(function(){
 			itemsMobile : [479,2],
 			singleItem : false,
 			itemsScaleUp : true,
-			//navigation : true,
-			//navigationText : ["prev","next"],
-			//rewindNav : true,
 			autoPlay: true,
 			scrollPerPage : true,
 			autoHeight : false,
       		pagination : false
 	  });
 
+	$('.links-column').click(function(){
+		//alert("test");
+		var a = $( this ).data('slug');
+		var b = $( this ).data('goto');
+		if(a){
+			location.href = "categories/"+a;
+		}
+		else if(b){
+			//location.href = b;
+			window.open(b, "_blank");
+		}
+	});
+
+	$(".links-logo").click(function(){
+		location.href = "/home";
+	});
 
 });
-
-
-// theme
-function loadTheme(urlx){
-	alert('hey');
-	return false;
-}

@@ -13,9 +13,9 @@
               	{
               	?>
 	                <div class="item darkCyan">
-	                  <img src="<?php echo $row->img; ?>" width="100%" alt="404.ge" />
-	                    <h3><?php echo $row->title; ?></h3>
-	                    <h4><a href="<?php echo $row->url; ?>" target="_blank"><?php echo $row->url; ?></a></h4>
+	                  <img src="<?php echo $row->{"img"}; ?>" width="100%" alt="404.ge" />
+	                    <h3><?php echo $row->{"title"}; ?></h3>
+	                    <h4><a href="<?php echo $row->{"url"}; ?>" target="_blank"><?php echo $row->{"url"}; ?></a></h4>
 	                </div>
                 <?php
             	}
@@ -33,157 +33,24 @@
 			  <li><a href="#">მთავარი</a></li>
 			</ol>
 			
-
-			<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column">
-				<div class="thumbnail">
-					<div class="icon">
-						<i class="fa fa-file-movie-o"></i>
+			<?php
+			foreach($categories as $row)
+			{
+			?>
+				<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column" data-slug="<?php echo $row->{"slug"}; ?>">
+					<div class="thumbnail">
+						<div class="icon">
+							<i class="<?php echo $row->{"icon"}; ?>"></i>
+						</div>
+						<div class="datas">
+							<p class="data"><?php echo $row->{"name"}; ?></p>
+						</div>
+						<div class="counter">0</div>
 					</div>
-					<div class="datas">
-						<p class="data">ფილმები</p>
-					</div>
-					<div class="counter">25</div>
 				</div>
-			</div>
-
-
-			<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column">
-				<div class="thumbnail">
-					<div class="icon">
-						<i class="fa fa-music"></i>
-					</div>
-					<div class="datas">
-						<p class="data">მუსიკა</p>
-					</div>
-					<div class="counter">25</div>
-				</div>
-			</div>
-
-
-			<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column">
-				<div class="thumbnail">
-					<div class="icon">
-						<i class="fa fa-gamepad"></i>
-					</div>
-					<div class="datas">
-						<p class="data">თამაშები</p>
-					</div>
-					<div class="counter">25</div>
-				</div>
-			</div>
-
-
-			<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column">
-				<div class="thumbnail">
-					<div class="icon">
-						<i class="fa fa-shopping-cart"></i>
-					</div>
-					<div class="datas">
-						<p class="data">მაღაზიები</p>
-					</div>
-					<div class="counter">25</div>
-				</div>
-			</div>
-
-
-			<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column">
-				<div class="thumbnail">
-					<div class="icon">
-						<i class="fa fa-heart"></i>
-					</div>
-					<div class="datas">
-						<p class="data">გაცნობა</p>
-					</div>
-					<div class="counter">25</div>
-				</div>
-			</div>
-
-
-			<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column">
-				<div class="thumbnail">
-					<div class="icon">
-						<i class="fa fa-soccer-ball-o"></i>
-					</div>
-					<div class="datas">
-						<p class="data">სპორტი</p>
-					</div>
-					<div class="counter">25</div>
-				</div>
-			</div>
-
-			<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column">
-				<div class="thumbnail">
-					<div class="icon">
-						<i class="fa fa-newspaper-o"></i>
-					</div>
-					<div class="datas">
-						<p class="data">მასმედია</p>
-					</div>
-					<div class="counter">25</div>
-				</div>
-			</div>
-
-			<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column">
-				<div class="thumbnail">
-					<div class="icon">
-						<i class="fa fa-file-text"></i>
-					</div>
-					<div class="datas">
-						<p class="data">განცხადებები</p>
-					</div>
-					<div class="counter">25</div>
-				</div>
-			</div>
-
-			<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column">
-				<div class="thumbnail">
-					<div class="icon">
-						<i class="fa fa-exclamation-triangle"></i>
-					</div>
-					<div class="datas">
-						<p class="data">აზარტული თამაშები</p>
-					</div>
-					<div class="counter">25</div>
-				</div>
-			</div>
-
-			<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column">
-				<div class="thumbnail">
-					<div class="icon">
-						<i class="fa fa-money"></i>
-					</div>
-					<div class="datas">
-						<p class="data">ფასდაკლება</p>
-					</div>
-					<div class="counter">25</div>
-				</div>
-			</div>
-
-			<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column">
-				<div class="thumbnail">
-					<div class="icon">
-						<i class="fa fa-graduation-cap"></i>
-					</div>
-					<div class="datas">
-						<p class="data">განათლება</p>
-					</div>
-					<div class="counter">25</div>
-				</div>
-			</div>
-
-			
-
-			<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column">
-				<div class="thumbnail">
-					<div class="icon">
-						<i class="fa fa-users"></i>
-					</div>
-					<div class="datas">
-						<p class="data">სოციალური ქსელი</p>
-					</div>
-					<div class="counter">25</div>
-				</div>
-			</div>
+			<?php
+			}
+			?>
 
 		</div>
 	</div>

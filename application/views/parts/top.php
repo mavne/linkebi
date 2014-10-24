@@ -24,18 +24,6 @@
 					<input type="text" name="search-key" id="search-key" class="search-key" value="საკვანძო სიტყვა" />
 						<div class="btn-group links-search-button">
 						  <button type="button" class="btn btn-danger">ძიება</button>
-						  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-						    <span class="caret"></span>
-						    <span class="sr-only">&nbsp;</span>
-						  </button>
-						  <ul class="dropdown-menu" role="menu">
-						    <li><a href="#">ფილმები</a></li>
-						    <li><a href="#">ვიდეო პორტალი</a></li>
-						    <li><a href="#">გაცნობა</a></li>
-						    <li class="divider"></li>
-						    <li><a href="#">მუსიკა</a></li>
-						    <li><a href="#">სპორტი</a></li>
-						  </ul>
 						</div>
 				</form>
 			</div>
