@@ -48,6 +48,13 @@ $(document).ready(function(){
 		}
 	});
 
+	$('.commerce-url').click(function(){
+		//alert("test");
+		var a = $( this ).data('url');		
+		//location.href = b;
+		window.open(a, "_blank");
+	});
+
 	$(".links-logo").click(function(){
 		location.href = "/home";
 	});

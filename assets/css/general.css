@@ -29,6 +29,9 @@ body{
 	margin: 0;
 	padding: 0;
 }
+.cursor-pointer{
+	cursor: pointer;
+}
 .links-top .container{
 	margin: 0;
 	padding: 0;
@@ -605,6 +608,7 @@ body{
 .links-navigation-userarea ul li a{
 	color: #555555;
 }
+
 /*OWL carousel END*/
 
 
