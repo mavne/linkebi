@@ -6,10 +6,7 @@
 	<div class="container link-webkit-shadow">
 		<div class="row">
 			<div class="clearer"></div>
-			<ol class="breadcrumb">
-			  <li><a href="#">მთავარი</a></li>
-			  <li class="active">რეგისტრაცია - ავტორიზაცია</li>
-			</ol>
+			<?php echo $breadcrups; ?>
 			<div class="clearer"></div>
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 registration">
 				<form action="/registration" method="post" class="navbar-form navbar-left" id="registration">

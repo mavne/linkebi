@@ -26,11 +26,7 @@
             </div>
           
 			<div class="clearer"></div>
-			<ol class="breadcrumb">
-			  <li><a href="#">მთავარი</a></li>
-			  <li><a href="#">კატეგორია</a></li>
-			  <li class="active">ფილმები</li>
-			</ol>
+			<?php echo $breadcrups; ?>
 			<div class="clearer"></div>
 
 			<?php
@@ -38,7 +34,7 @@
 				foreach($categories as $row)
 				{
 				?>
-					<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column" data-goto="<?php echo $row->{"w_url"}; ?>">
+					<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column" data-goto="<?php echo $row->{"w_url"}; ?>" data-wi="<?php echo $row->{"w_id"};?>">
 						<div class="thumbnail">
 							<div class="website-logo">
 								<img src="<?php echo $row->{"w_img"}; ?>" alt="<?php echo $row->{"w_name"}; ?>" title="<?php echo $row->{"w_name"}; ?>" />

@@ -11,7 +11,12 @@ class Home extends CI_Controller {
 		$data["last_activity"] = $this->session->userdata('last_activity');
 		$data["username"] = $this->session->userdata('username');
 
-
+		// load title
+		$this->load->model("md_title");
+		$data["title"] = $this->md_title->getTitle();
+		// load breadcraps
+		$this->load->model("md_breadcraps");
+		$data["breadcrups"] = $this->md_breadcraps->bread();
 		// load navigation 
 		$this->load->model("md_navigation");
 		$data["nav"] = $this->md_navigation->nav();
@@ -21,6 +26,10 @@ class Home extends CI_Controller {
 		// load categories
 		$this->load->model('md_categories');
 		$data["categories"] = $this->md_categories->cats();
+
+		// load cat counter
+		$counter = $this->load->model("md_count_cats");
+		$data["count_array"] = $this->md_count_cats->countThis();
 
 		// load view page
 		$this->load->view('home_message', $data);

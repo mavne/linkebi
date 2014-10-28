@@ -1,5 +1,5 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class registration extends CI_Controller
+<?php
+class Counter extends CI_Controller
 {
 	public function index()
 	{
@@ -12,24 +12,22 @@ class registration extends CI_Controller
 		// load title
 		$this->load->model("md_title");
 		$data["title"] = $this->md_title->getTitle();
+
 		// load breadcraps
 		$this->load->model("md_breadcraps");
 		$data["breadcrups"] = $this->md_breadcraps->bread();
 		// load navigation 
 		$this->load->model("md_navigation");
 		$data["nav"] = $this->md_navigation->nav();
+		// load right commerce
+		$this->load->model("md_commerce");
+		$data["rt_commerce"] = $this->md_commerce->out("right");
 		
-		//unset sessions
-		$array_unset = array('ip_address'=>'', 'namelname'=>'', 'email'=>'', 'username'=>'', 'registration_time'=>'', 'last_login'=>'');
-		$this->session->unset_userdata($array_unset);
-
-		if(isset($_POST["form_type"]))
-		{
-			$this->load->model("md_form");
-			$data["form_message"] = $this->md_form->formValidation();
-		}
-		// load view page
-		$this->load->view('registration_message', $data);
+		$this->load->model("md_form");
+		$data["goto"] = $this->md_form->formValidation();
+		//load view
+		$this->load->view('counter_message', $data);
+		// exit();
 	}
 }
 ?>

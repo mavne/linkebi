@@ -20,6 +20,9 @@
 								{
 									echo '<li class="'.$row->{"icon"}.'"><a href="'.$row->{"url"}.'">'.$row->{"name"}.'</a></li>';
 								}
+								if($username){
+									echo '<li class="link-signout"><a href="registration">გასვლა</a></li>';
+								}
 								?>
 							</ul>
 						</nav>

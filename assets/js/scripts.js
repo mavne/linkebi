@@ -39,12 +39,28 @@ $(document).ready(function(){
 		//alert("test");
 		var a = $( this ).data('slug');
 		var b = $( this ).data('goto');
+		var wi = $( this ).data('wi');
 		if(a){
 			location.href = "categories/"+a;
 		}
 		else if(b){
-			//location.href = b;
-			window.open(b, "_blank");
+			//location.href = b; 
+			var form = document.createElement("form");
+		    var element = document.createElement("input");  
+		    var element2 = document.createElement("input");  
+
+		    form.method = "POST";
+		    form.action = "/counter"; 
+		    form.target = "_blank"; 
+		    form.id = "vis";
+		    element.value=wi;
+		    element.name="website_id";
+		    element2.value="counter";
+		    element2.name="form_type";
+		    form.appendChild(element); 
+		    form.appendChild(element2); 
+		    document.body.appendChild(form);
+		    form.submit();			
 		}
 	});
 
@@ -67,4 +83,11 @@ $(document).ready(function(){
 		$("#authorition").submit();
 	});
 
+
+	$("#submit_addwebsite").click(function(){
+		$(".addwebsite_form").submit();
+	});
+
 });
+
+

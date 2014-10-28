@@ -6,14 +6,21 @@
 	<div class="container link-webkit-shadow">
 		<div class="row">
 			<div class="clearer"></div>
-			<ol class="breadcrumb">
-			  <li><a href="#">მთავარი</a></li>
-			  <li class="active">რეგისტრაცია - ავტორიზაცია</li>
-			</ol>
+			<?php echo $breadcrups; ?>
 			<div class="clearer"></div>
 			
 
 			<div class="col-lg-3 col-md-3 col-sm-3">
+				<div class="row links-userarea-row">
+					<!-- <div class="col-lg-4 col-md-4 col-sm-4 col-sx-12 links-user-logo links-padding-0 links-position-relative">
+						<div class="user-icon"></div>
+					</div> -->
+					<div class="col-lg-12 links-user-information">
+						<div class="user-info"><strong>მომხმარებლის სახელი:</strong> გიორგი გვაზავა</div>
+						<div class="user-info"><strong>ელ-ფოსტა:</strong> giorgigvazava87@gmail.com</div>
+						<div class="user-info"><a href="/account_settings">რედაქტირება</a> | <a href="/registration">გასვლა</a></div>
+					</div>
+				</div>
 				<div class="links-navigation-userarea">
 					<ul class="nav nav-pills nav-stacked">
 	  					<li class="active"><a href="#">ვებ გვერდის დამატება</a></li>

@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="Author" content="created by STUDIO 404">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>მოხდა შეცდომა</title>
+	<title><?php echo $title; ?></title>
 	<style type="text/css" rel="stylesheet">
 	body{
 		margin:0;

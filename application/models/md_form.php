@@ -76,6 +76,109 @@ class md_form extends CI_Model
 				$out["error_message_auth"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
 			}
 		}
+		else if($_POST["form_type"]=="addwebsite")
+		{
+			if
+			(
+				$this->val_require($_POST["name"]) && 
+				$this->val_require($_POST["url"])
+			)
+			{
+				if(!isset($_POST["cat"]) || !$this->vat_array_empty($_POST["cat"]))
+				{
+					$out["addwebsite_message"] = "გთხოვთ მონიშნოთ მინიმუმ ერთი კატეგორია !";
+				}
+				else if(!$this->val_file_empty("file"))
+				{
+					$out["addwebsite_message"] = "გთხოვთ ატვირთოთ ვებ საიტის ლოგო !";
+				}
+				else if(!$this->val_file_type("file",array('png','jpg','jpeg','gif')))
+				{
+					$out["addwebsite_message"] = "ატვირთული ფოტოს ფორმატი არ შეესაბამება მოთხოვნილს !";
+				}
+				else if(!$this->val_file_size("file","500000"))
+				{
+					$out["addwebsite_message"] = "ატვირთული ფაილის ზომა აღემატება დასაშვებს !";
+				}
+				else
+				{
+					$newFileName = $this->upload_file_to("file","../public-images/img/");
+					if($newFileName){
+						$username = $this->session->userdata('username');
+						$onlyname = explode(".",$newFileName);
+						$image_path = "http://img.404.ge/png/".$onlyname[0]."/180/73";
+						$cat_ids = "";
+						foreach($_POST["cat"] as $key => $value)
+						{
+							$cat_ids .= $key.",";
+						}
+						$cat_ids = rtrim($cat_ids, ",");
+						//insert website
+						$data = array(
+						   'cat_id' => $cat_ids,
+						   'username' => $username,
+						   'name' => $_POST["name"],
+						   'url' => $_POST["url"], 
+						   'img' => $image_path 
+						);
+						$insert = $this->db->insert('websites', $data); 
+						if($insert){
+							$out["addwebsite_message_done"] = "მადლობთ, ვებ საიტი წარმატებით დაემატა ! დასტურის მიცემის შემდგომ გამოჩნდება საიტზე";
+						}else{
+							$out["addwebsite_message"] = "მოხდა ფატალური შეცდომა !";
+						}
+						
+					}else{
+						$out["addwebsite_message"] = "ფაილის ატვირთვისას მოხდა შეცდომა !";
+					}
+				}
+			}
+			else
+			{
+				$out["addwebsite_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
+			}
+		}
+		else if($_POST["form_type"]=="counter")
+		{
+			if($this->val_require($_POST["website_id"]))
+			{
+				$ip = $_SERVER["REMOTE_ADDR"];
+				$website_id = (int)$_POST["website_id"];
+				$query = $this->db->query("SELECT `id` FROM `views` WHERE `ip`='".mysql_real_escape_string($ip)."' AND `date`='".date("Y/m/d")."' AND `website_id`='".(int)$_POST["website_id"]."' ");
+				$query2 = $this->db->query("SELECT `url`,`clicks` FROM `websites` WHERE `id`='".(int)$_POST["website_id"]."' ");
+				
+				if($query2->num_rows > 0)
+				{
+					$result = $query2->row();
+					$out["goto"] = $result->url;
+					if($query->num_rows <= 0)
+					{// user already clicked the website today
+						$data = array(
+						   'date' => date("Y/m/d"),
+						   'ip' => $ip,
+						   'website_id' => $website_id
+						);
+						$this->db->insert('views', $data); 
+
+						// update view count
+						$data2 = array(
+						'clicks' => ($result->clicks + 1)
+						);
+						$this->db->where('id', $website_id);
+						$this->db->update('websites', $data2); 
+					}
+				}
+				else{
+					$out["goto"] = "/error";
+				}
+
+				
+			}
+			else
+			{
+				$out["goto"] = "/error";
+			}
+		}
 		return $out;
 	}
 
@@ -137,6 +240,63 @@ class md_form extends CI_Model
 		}else{
 			return false;
 		}
+	}
+
+	public function vat_array_empty($post)
+	{
+		if(count($post))
+		{
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function val_file_empty($name)
+	{
+		if(isset($_FILES[$name]["name"]) && !empty($_FILES[$name]["name"]))
+		{
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function val_file_type($name, $file_type)
+	{
+		$ext = end(explode(".",$_FILES[$name]["name"]));
+		if(in_array(strtolower($ext), $file_type)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function val_file_size($name,$size)
+	{
+		$s = $_FILES[$name]["size"];
+		if($s > $size){
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+	public function upload_file_to($name,$path)
+	{
+		//variables
+		$filename = $_FILES[$name]["name"];
+		$ext = end(explode(".",$filename));
+		$newname = time().".".strtolower($ext);
+		$dir = $path.$newname;
+		//move
+		$move = move_uploaded_file($_FILES[$name]["tmp_name"], $dir);
+		if($move){
+			return $newname;
+		}else{
+			return false;
+		}
+
 	}
 
 }

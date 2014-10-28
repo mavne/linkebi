@@ -13,8 +13,12 @@ body{
     font-weight: normal;
     font-style: normal;
 }
+#vis{ visibility: hidden; }
 .links-position-relative{
 	position: relative;
+}
+.padding-top-20{
+	padding-top: 20px !important;
 }
 .links-width-100{
 	width: 100%;
@@ -146,6 +150,16 @@ body{
    	color: #e43f83;
     font-size: 22px;
 }
+.link-signout::after{
+	content: "\f08b";
+    top: 30px;
+    left: 0;
+    position: absolute;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+   	color: #e43f83;
+    font-size: 22px;
+}
 .link-navigation ul li a{
 	margin: 0;
 	padding: 0 20px 0 30px;
@@ -264,6 +278,9 @@ body{
 	color: #e43f83;
 	font-family: 'bulla';
 	font-size: 14px;
+}
+.breadcrumb li .active{
+	color: #555555;
 }
 .breadcrumb > .active{
 	color: #555555;
@@ -500,6 +517,70 @@ body{
 .links-checkbox{
 	width: 80%;
 }
+.links-userarea-row{
+	margin:10px 0 !important;
+	padding: 0;
+	width: 100%;
+	border: solid 1px #cccccc;
+}
+.links-userarea-row .user-icon{
+	margin:0;
+	padding: 0;
+	border: 0;
+	width: 100%;
+	height: 80px;
+	background:#ccc;
+	text-align: center;
+}
+.links-userarea-row .user-icon::after{
+	content: "\f007";
+	font: normal normal normal 14px/1 FontAwesome;
+	position: absolute;
+	top:50%;
+	left: 50%;
+	margin: -25px 0 0 -28px;
+	font-size: 70px;
+	line-height: 50px;
+	color: #555555;
+	text-align: center;
+}
+.links-user-information{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.user-info{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	font-size: 12px;
+	font-family: 'bulla';
+	color: #555555;
+	text-align: left;
+	word-wrap:break-word;
+}
+.user-info a{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	font-size: 12px;
+	font-family: 'bulla';
+	color: #e43f83;
+	text-align: left;
+	word-wrap:break-word;
+}
+.links-padding-0{
+	padding:0px !important; 
+}
+.links-position-relative{
+	position: relative;
+}
+#text{
+	margin:0;
+	padding: 0;
+	width: 100%;
+	height: 120px;
+	border: 1px solid #ccc;
+}
 /*OWL carousel START*/
 #owl-example .item{
 	padding: 0px;
@@ -612,7 +693,7 @@ body{
 /*OWL carousel END*/
 
 
-@media screen and (max-width: 1240px) {
+@media screen and (max-width: 1260px) {
 	.links-top .container .links-mask .links-head .row{
 		margin: 0 5%;
 		width: 90% !important;
@@ -628,7 +709,7 @@ body{
 }
 
 @media screen and (max-width: 1200px) {
-	
+	.links-user-logo{ display: none !important; }
 }
 
 @media screen and (max-width: 991px) {

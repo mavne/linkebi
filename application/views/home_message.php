@@ -29,10 +29,8 @@
 			
 			<div class="row">
             <div class="clearer"></div>
-			<ol class="breadcrumb">
-			  <li><a href="#">მთავარი</a></li>
-			</ol>
-			
+			<?php echo $breadcrups; ?>
+			<div class="clearer"></div>
 			<?php
 			foreach($categories as $row)
 			{
@@ -45,7 +43,7 @@
 						<div class="datas">
 							<p class="data"><?php echo $row->{"name"}; ?></p>
 						</div>
-						<div class="counter"><?php echo $row->{"counts"}; ?></div>
+						<div class="counter"><?php echo $count_array[$row->{"cats"}]?></div>
 					</div>
 				</div>
 			<?php

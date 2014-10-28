@@ -11,7 +11,12 @@ class Categories extends CI_Controller {
 		$data["user_agent"] = $this->session->userdata('user_agent');
 		$data["last_activity"] = $this->session->userdata('last_activity');
 		$data["username"] = $this->session->userdata('username');
-
+		// load title
+		$this->load->model("md_title");
+		$data["title"] = $this->md_title->getTitle();
+		// load breadcraps
+		$this->load->model("md_breadcraps");
+		$data["breadcrups"] = $this->md_breadcraps->bread();
 		// load navigation 
 		$this->load->model("md_navigation");
 		$data["nav"] = $this->md_navigation->nav();
@@ -95,13 +100,12 @@ class Categories extends CI_Controller {
 		$data["user_agent"] = $this->session->userdata('user_agent');
 		$data["last_activity"] = $this->session->userdata('last_activity');
 		$data["username"] = $this->session->userdata('username');
-		// $newdata = array(
-  		//	'username'  => 'johndoe',
-  		//  'email'     => 'johndoe@some-site.com',
-  		//  'logged_in' => TRUE
-  		//  );
-		// $this->session->set_userdata($newdata);
-
+		// load title
+		$this->load->model("md_title");
+		$data["title"] = $this->md_title->getTitle();
+		// load breadcraps
+		$this->load->model("md_breadcraps");
+		$data["breadcrups"] = $this->md_breadcraps->bread();
 		// load navigation 
 		$this->load->model("md_navigation");
 		$data["nav"] = $this->md_navigation->nav();
