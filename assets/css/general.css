@@ -581,6 +581,21 @@ body{
 	height: 120px;
 	border: 1px solid #ccc;
 }
+.star{
+	margin:0;
+	padding:0;
+	width:20px;
+	height:20px;
+	position: absolute;
+	right: 10px;
+	top:10px;
+	color:#555555;
+	font-size: 18px;
+	z-index: 10000;
+}
+.star:hover{ 
+	color: #e43f83;
+}
 /*OWL carousel START*/
 #owl-example .item{
 	padding: 0px;

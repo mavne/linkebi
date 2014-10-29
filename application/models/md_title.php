@@ -22,6 +22,8 @@ class Md_title extends CI_Model
 			$title = "მოხდა შეცდომა - ყველა ბმული ერთ საიტზე";
 		}else if($url[3]=="counter"){
 			$title = "მიმდინარეობს ვებ საიტზე გადასვლა - ყველა ბმული ერთ საიტზე";
+		}else if($url[3]=="website" && $url[4]=="edit"){
+			$title = "ვებ საიტის რედაქტირება - ყველა ბმული ერთ საიტზე";
 		}else if($url[3]=="categories"){
 			$query  = $this->db->query("SELECT `name` FROM `categories` WHERE `slug`='".mysql_real_escape_string($url[4])."' AND `status`!=1 ");
 			if($query->num_rows() > 0){

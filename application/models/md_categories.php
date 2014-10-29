@@ -1,8 +1,9 @@
 <?php
 class md_categories extends CI_Model{
-	public function cats($cat_slug = false)
+	public function cats($cat_slug = false, $users_id = false)
 	{
 		if(!$cat_slug){
+			//categories
 			$query = $this->db->query("SELECT 
 			`categories`.`id` AS cats,
 			`categories`.`name` AS name,
@@ -14,7 +15,20 @@ class md_categories extends CI_Model{
 		}
 		else 
 		{
-			$query = $this->db->query("SELECT 
+			if($users_id){ 
+				//users website
+				$query = $this->db->query("SELECT 
+											`id`,`username`,`name`,`url`,`img`,`clicks`
+											FROM 
+											`websites` 
+											WHERE 
+											`status`!=1 AND 
+											`allowed`!=0 AND 
+											`username`='".$users_id."'
+											ORDER BY `clicks` DESC");
+			}else{
+				//websites by categories
+				$query = $this->db->query("SELECT 
 											`websites`.`id` AS w_id, 
 											`websites`.`username` AS w_username, 
 											`websites`.`name` AS w_name,
@@ -29,7 +43,9 @@ class md_categories extends CI_Model{
 											FIND_IN_SET(`categories`.`id`,`websites`.`cat_id`) AND 
 											`websites`.`status`!=1 AND 
 											`websites`.`allowed`!=0
-											ORDER BY `clicks` DESC");
+											ORDER BY `websites`.`clicks` DESC");
+			}
+			
 			$out = $query->result();
 		}
 

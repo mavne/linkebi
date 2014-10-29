@@ -34,6 +34,10 @@ $(document).ready(function(){
 			autoHeight : false,
       		pagination : false
 	  });
+	$('.star').click(function(){
+		location.href = "/favourites";
+		return false;
+	});
 
 	$('.links-column').click(function(){
 		//alert("test");

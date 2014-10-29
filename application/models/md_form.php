@@ -106,7 +106,7 @@ class md_form extends CI_Model
 					if($newFileName){
 						$username = $this->session->userdata('username');
 						$onlyname = explode(".",$newFileName);
-						$image_path = "http://img.404.ge/png/".$onlyname[0]."/180/73";
+						$image_path = "http://img.404.ge/".$onlyname[1]."/".$onlyname[0]."/180/73";
 						$cat_ids = "";
 						foreach($_POST["cat"] as $key => $value)
 						{
@@ -177,6 +177,84 @@ class md_form extends CI_Model
 			else
 			{
 				$out["goto"] = "/error";
+			}
+		}
+		else if($_POST["form_type"]=="editwebsite")
+		{
+			if
+			(
+				$this->val_require($_POST["name"]) && 
+				$this->val_require($_POST["url"])
+			)
+			{
+				if(!isset($_POST["cat"]) || !$this->vat_array_empty($_POST["cat"]))
+				{
+					$out["addwebsite_message"] = "გთხოვთ მონიშნოთ მინიმუმ ერთი კატეგორია !";
+				}
+				else
+				{
+					//categories
+					$cat_ids = "";
+					foreach($_POST["cat"] as $key => $value)
+					{
+						$cat_ids .= $key.",";
+					}
+					$cat_ids = rtrim($cat_ids, ",");
+					//user name
+					$username = $this->session->userdata('username');
+					//load url
+					$this->load->model("md_current_url");
+					$url = $this->md_current_url->getUrl();
+
+					// file upload
+					if(!$this->val_file_type("file",array('png','jpg','jpeg','gif')))
+					{
+						$out["addwebsite_message"] = "ატვირთული ფოტოს ფორმატი არ შეესაბამება მოთხოვნილს !";
+					}
+					else if(!$this->val_file_size("file","500000"))
+					{
+						$out["addwebsite_message"] = "ატვირთული ფაილის ზომა აღემატება დასაშვებს !";
+					}else{				
+						$newFileName = $this->upload_file_to("file","../public-images/img/");
+						$onlyname = explode(".",$newFileName);
+					}
+
+					if(isset($newFileName)){
+						$image_path = "http://img.404.ge/".$onlyname[1]."/".$onlyname[0]."/180/73";
+						//update website
+						$data = array(
+						   'cat_id' => $cat_ids,
+						   'name' => $_POST["name"],
+						   'url' => $_POST["url"], 
+						   'img' => $image_path, 
+						   'allowed' => 0, 
+						   'clicks' => 0
+						);
+					}else{
+						//update website
+						$data = array(
+						   'cat_id' => $cat_ids,
+						   'name' => $_POST["name"],
+						   'url' => $_POST["url"], 
+						   'allowed' => 0, 
+						   'clicks' => 0
+						);
+					}						
+					$update = $this->db->update('websites', $data, array('id' => $url[5], 'status' => 0, 'username' => $username)); 
+
+				
+					if(isset($update)){
+						$out["addwebsite_message_done"] = "ვებ საიტი წარმატებით დარედაქტირდა ! დასტურის მიცემის შემდგომ გამოჩნდება საიტზე";
+					}else{
+						$out["addwebsite_message"] = "მოხდა ფატალური შეცდომა !";
+					}
+					$out["addwebsite_message"] = "ფაილის ატვირთვისას მოხდა შეცდომა !";
+					
+				}
+			}
+			else
+			{
+				$out["addwebsite_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
 			}
 		}
 		return $out;
