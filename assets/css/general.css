@@ -596,6 +596,7 @@ body{
 .star:hover{ 
 	color: #e43f83;
 }
+.star.active{ color: #e43f83; }
 /*OWL carousel START*/
 #owl-example .item{
 	padding: 0px;

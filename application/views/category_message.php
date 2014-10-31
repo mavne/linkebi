@@ -36,7 +36,7 @@
 				?>
 					<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column" data-goto="<?php echo $row->{"w_url"}; ?>" data-wi="<?php echo $row->{"w_id"};?>">
 						<div class="thumbnail links-position-relative">
-							<div class="star" data-addfavourite="<?php echo $row->{"w_id"};?>"><i class="fa fa-star-o fa-6"></i></div>
+							<div class="star active" data-addfavourite="<?php echo $row->{"w_id"};?>"><i class="fa fa-star-o fa-6"></i></div>
 							<div class="website-logo">
 								<img src="<?php echo $row->{"w_img"}; ?>" alt="<?php echo $row->{"w_name"}; ?>" title="<?php echo $row->{"w_name"}; ?>" />
 							</div>
