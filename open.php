@@ -1,5 +1,6 @@
-<?php
-
+<?php 
+// set time zone
+date_default_timezone_set('Asia/Tbilisi');
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT

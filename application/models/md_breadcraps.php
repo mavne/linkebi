@@ -31,6 +31,9 @@ class md_breadcraps extends CI_Model
 			$bread .= '<li><a href="/home">მთავარი</a></li>';
 			$bread .= '<li><a href="/myspace">პირადი სივრცე</a></li>';
 			$bread .= '<li><a class="active">ვებ საიტის რედაქტირება</a></li>';
+		}else if($url[3]=="favorites"){
+			$bread .= '<li><a href="/home">მთავარი</a></li>';
+			$bread .= '<li><a class="active">ფავორიტები</a></li>';
 		}else if($url[3]=="categories"){
 			$query  = $this->db->query("SELECT `name` FROM `categories` WHERE `slug`='".mysql_real_escape_string($url[4])."' AND `status`!=1 ");
 			if($query->num_rows() > 0){

@@ -22,19 +22,19 @@
 					<div class="clearer"></div>
 					<div class="form-group">
 						<label for="namelname">სახელი და გვარი: <font color="red">*</font></label>
-						<input type="text" class="form-control" id="namelname" name="namelname" value="" />
+						<input type="text" class="form-control" id="namelname" name="namelname" value="<?php echo $input_namelname; ?>" />
 					</div>
 					<div class="clearer"></div>
 
 					<div class="form-group">
 						<label for="email">ელ-ფოსტა: <font color="red">*</font></label>
-						<input type="text" class="form-control" id="email"name="email" value="" />
+						<input type="text" class="form-control" id="email"name="email" value="<?php echo $input_email; ?>" />
 					</div>
 					<div class="clearer"></div>
 
 					<div class="form-group">
 						<label for="username">მომხმარებლის სახელი: <font color="red">*</font></label>
-						<input type="text" class="form-control" id="username" name="username" value="" />
+						<input type="text" class="form-control" id="username" name="username" value="<?php echo $input_username; ?>" />
 					</div>
 					<div class="clearer"></div>
 					

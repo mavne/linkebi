@@ -18,14 +18,14 @@ class md_categories extends CI_Model{
 			if($users_id){ 
 				//users website
 				$query = $this->db->query("SELECT 
-											`id`,`username`,`name`,`url`,`img`,`clicks`
+											`websites`.`id`,`websites`.`username`,`websites`.`name`,`websites`.`url`,`websites`.`img`,`websites`.`clicks`
 											FROM 
 											`websites` 
 											WHERE 
-											`status`!=1 AND 
-											`allowed`!=0 AND 
-											`username`='".$users_id."'
-											ORDER BY `clicks` DESC");
+											`websites`.`status`!=1 AND 
+											`websites`.`allowed`!=0 AND 
+											`websites`.`username`='".$users_id."' 
+											ORDER BY `websites`.`clicks` DESC");
 			}else{
 				//websites by categories
 				$query = $this->db->query("SELECT 
@@ -34,9 +34,12 @@ class md_categories extends CI_Model{
 											`websites`.`name` AS w_name,
 											`websites`.`url` AS w_url,
 											`websites`.`img` AS w_img,
-											`websites`.`clicks` AS w_clicks 
+											`websites`.`clicks` AS w_clicks, 
+											`favourites`.`id` AS w_favourite 
 											FROM 
 											`categories`,`websites` 
+											LEFT JOIN `favourites` 
+											ON `websites`.`id` = `favourites`.`web_id` 
 											WHERE 
 											`categories`.`slug`='".mysql_real_escape_string($cat_slug)."' AND 
 											`categories`.`status`!=1  AND 

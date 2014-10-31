@@ -28,6 +28,10 @@ class registration extends CI_Controller
 			$this->load->model("md_form");
 			$data["form_message"] = $this->md_form->formValidation();
 		}
+		//if isset posts
+		$data["input_namelname"] = (isset($_POST["namelname"])) ? $_POST["namelname"] : "";
+		$data["input_email"] = (isset($_POST["email"])) ? $_POST["email"] : "";
+		$data["input_username"] = (isset($_POST["username"])) ? $_POST["username"] : "";
 		// load view page
 		$this->load->view('registration_message', $data);
 	}

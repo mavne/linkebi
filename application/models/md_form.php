@@ -4,7 +4,7 @@ class md_form extends CI_Model
 	public function formValidation()
 	{
 		$out = "";
-		if($_POST["form_type"]=="registration")
+		if(isset($_POST["form_type"]) && $_POST["form_type"]=="registration")
 		{
 			if
 			(
@@ -38,18 +38,20 @@ class md_form extends CI_Model
 					$out["error_message"] = "მომხმარებლის სახელი დაკავაბულია !";
 				}
 				else
-				{// insert new user					
+				{// insert new user		
+					$md5_pass = md5($_POST["password"]);			
 					$this->db->insert("users", 
 						array(
 							'ip_address' => $_SERVER['REMOTE_ADDR'],
 							'namelname' => $_POST["namelname"],
 							'email' => $_POST["email"],
 							'username' => $_POST["username"],
-							'password' => md5($_POST["password"]),
+							'password' => $md5_pass,
 							'registration_time' => time()
 						)
 					);
-					$out["done_message"] = "თქვენ წარმატებით გაიარეთ რეგისტრაცია !";
+					$out["done_message"] = $this->val_auth($_POST["username"],$_POST["password"]); 
+					//$out["done_message"] = "თქვენ წარმატებით გაიარეთ რეგისტრაცია !";
 				}
 
 			}
@@ -58,7 +60,7 @@ class md_form extends CI_Model
 				$out["error_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
 			}
 		}
-		else if($_POST["form_type"]=="authorition")
+		else if(isset($_POST["form_type"]) && $_POST["form_type"]=="authorition")
 		{
 			if
 			(
@@ -76,7 +78,7 @@ class md_form extends CI_Model
 				$out["error_message_auth"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
 			}
 		}
-		else if($_POST["form_type"]=="addwebsite")
+		else if(isset($_POST["form_type"]) && $_POST["form_type"]=="addwebsite")
 		{
 			if
 			(
@@ -138,7 +140,7 @@ class md_form extends CI_Model
 				$out["addwebsite_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
 			}
 		}
-		else if($_POST["form_type"]=="counter")
+		else if(isset($_POST["form_type"]) && $_POST["form_type"]=="counter")
 		{
 			if($this->val_require($_POST["website_id"]))
 			{
@@ -147,12 +149,12 @@ class md_form extends CI_Model
 				$query = $this->db->query("SELECT `id` FROM `views` WHERE `ip`='".mysql_real_escape_string($ip)."' AND `date`='".date("Y/m/d")."' AND `website_id`='".(int)$_POST["website_id"]."' ");
 				$query2 = $this->db->query("SELECT `url`,`clicks` FROM `websites` WHERE `id`='".(int)$_POST["website_id"]."' ");
 				
-				if($query2->num_rows > 0)
+				if($query2->num_rows() > 0)
 				{
 					$result = $query2->row();
 					$out["goto"] = $result->url;
-					if($query->num_rows <= 0)
-					{// user already clicked the website today
+					if($query->num_rows() <= 0)
+					{// user not clicked the website today
 						$data = array(
 						   'date' => date("Y/m/d"),
 						   'ip' => $ip,
@@ -179,7 +181,7 @@ class md_form extends CI_Model
 				$out["goto"] = "/error";
 			}
 		}
-		else if($_POST["form_type"]=="editwebsite")
+		else if(isset($_POST["form_type"]) && $_POST["form_type"]=="editwebsite")
 		{
 			if
 			(
@@ -255,6 +257,22 @@ class md_form extends CI_Model
 			else
 			{
 				$out["addwebsite_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
+			}
+		}
+		else if(isset($_GET["form_type"]) && $_GET["form_type"]=="ajax_favourite")
+		{// add favourite
+			if($this->val_require($_GET["wid"]) && $this->val_require($this->session->userdata('username')))
+			{// check posts
+				if($this->val_checkfavourite($_GET["wid"], $this->session->userdata('username')))
+				{// favourite exists
+					$this->favourite($_GET["wid"], $this->session->userdata('username'),false);
+					$out = "deleted";
+				}
+				else
+				{// favourite not exists
+					$out = $this->favourite($_GET["wid"], $this->session->userdata('username'),true);
+					$out = "added";
+				}
 			}
 		}
 		return $out;
@@ -375,6 +393,34 @@ class md_form extends CI_Model
 			return false;
 		}
 
+	}
+
+	public function val_checkfavourite($wid,$username)
+	{
+		$query = $this->db->query("SELECT `id` FROM `favourites` WHERE `web_id`='".(int)$wid."' AND `username`='".$username."' ");
+		if($query->num_rows() > 0)
+		{
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function favourite($wid,$user,$add)
+	{
+		if($add)
+		{// add favourite
+			$data = array(
+			'insert_date' => time(),
+			'web_id' => mysql_real_escape_string($wid),
+			'username' => mysql_real_escape_string($user) 
+			);
+			$this->db->insert('favourites', $data); 
+		}
+		else
+		{//remove favourite
+			$this->db->delete('favourites', array('web_id' => mysql_real_escape_string($wid), 'username' => mysql_real_escape_string($user) )); 
+		}
 	}
 
 }

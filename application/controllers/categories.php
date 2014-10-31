@@ -116,6 +116,7 @@ class Categories extends CI_Controller {
 		// load categories
 		$this->load->model('md_categories');
 		$data["categories"] = $this->md_categories->cats($cat);
+
 		// load view page
 		$this->load->view('category_message', $data);
 	}

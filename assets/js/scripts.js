@@ -35,7 +35,18 @@ $(document).ready(function(){
       		pagination : false
 	  });
 	$('.star').click(function(){
-		location.href = "/favourites";
+		var wi = $( this ).data('addfavourite');
+		var cl = $( this );
+		$.get( "http://links.404.ge/addFavorites", { wid: wi, form_type: "ajax_favourite" }, function( data ) {
+			if(data=="added")
+			{
+				cl.attr("class","star active");
+			}
+			else
+			{
+				cl.attr("class","star");
+			}
+		});
 		return false;
 	});
 
