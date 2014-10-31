@@ -1,6 +1,7 @@
 <?php
 @include('application/views/parts/header.php');
-echo '<meta http-equiv="refresh" content="0; url='.$goto["goto"].'" />';
+if(isset($goto["goto"])){ $go = $goto["goto"];  }else{ $go = '/error'; }
+echo '<meta http-equiv="refresh" content="0; url='.$go.'" />';
 @include('application/views/parts/top.php');
 ?>
 <section class="link-content">

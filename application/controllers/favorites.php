@@ -9,6 +9,8 @@ class favorites extends CI_Controller
 		$data["user_agent"] = $this->session->userdata('user_agent');
 		$data["last_activity"] = $this->session->userdata('last_activity');
 		$data["username"] = $this->session->userdata('username');
+		$data["namelname"] = $this->session->userdata('namelname');
+		$data["email"] = $this->session->userdata('email');
 		
 		if($data["username"])
 		{

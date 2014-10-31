@@ -16,14 +16,14 @@
 						<div class="user-icon"></div>
 					</div> -->
 					<div class="col-lg-12 links-user-information">
-						<div class="user-info"><strong>მომხმარებლის სახელი:</strong> გიორგი გვაზავა</div>
-						<div class="user-info"><strong>ელ-ფოსტა:</strong> giorgigvazava87@gmail.com</div>
+						<div class="user-info"><strong>მომხმარებლის სახელი:</strong> <?php echo $namelname; ?></div>
+						<div class="user-info"><strong>ელ-ფოსტა:</strong> <?php echo $email; ?></div>
 						<div class="user-info"><a href="/account_settings">რედაქტირება</a> | <a href="/registration">გასვლა</a></div>
 					</div>
 				</div>
 				<div class="links-navigation-userarea">
 					<ul class="nav nav-pills nav-stacked">
-	  					<li><a href="#">ჩემი დამატებულები</a></li>
+	  					<li><a href="myspace">ჩემი დამატებულები</a></li>
 	  					<li class="active"><a href="/favorites">ფავორიტები</a></li>
 	  					<li><a href="#">ანგარიშის რედაქტირება</a></li>
 					</ul>
