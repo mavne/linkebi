@@ -714,7 +714,30 @@ body{
 .links-navigation-userarea ul li a{
 	color: #555555;
 }
-
+.panel-heading{
+	font-family: 'bulla';
+	font-size: 14px;
+	color: #555555;
+}
+.panel-body p{
+	font-family: 'bulla';
+	font-size: 14px;
+	color: #555555;
+}
+table{
+	font-family: 'bulla';
+	font-size: 14px;
+	color: #555555;
+}
+.tr-goto{
+	font-family: 'bulla';
+	font-size: 14px;
+	color: #e43f83;
+	cursor: pointer;
+}
+.tr-goto:hover{
+	color: #e43f83;
+}
 /*OWL carousel END*/
 
 

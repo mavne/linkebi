@@ -1,6 +1,6 @@
 <?php
 class md_categories extends CI_Model{
-	public function cats($cat_slug = false, $users_id = false)
+	public function cats($cat_slug = false, $usersname = false)
 	{
 		if(!$cat_slug){
 			//categories
@@ -15,7 +15,7 @@ class md_categories extends CI_Model{
 		}
 		else 
 		{
-			if($users_id){ 
+			if($usersname){ 
 				//users website
 				$query = $this->db->query("SELECT 
 											`websites`.`id`,`websites`.`username`,`websites`.`name`,`websites`.`url`,`websites`.`img`,`websites`.`clicks`
@@ -24,9 +24,10 @@ class md_categories extends CI_Model{
 											WHERE 
 											`websites`.`status`!=1 AND 
 											`websites`.`allowed`!=0 AND 
-											`websites`.`username`='".$users_id."' 
+											`websites`.`username`='".$usersname."' 
 											ORDER BY `websites`.`clicks` DESC");
 			}else{
+				$user = $this->session->userdata('username');
 				//websites by categories
 				$query = $this->db->query("SELECT 
 											`websites`.`id` AS w_id, 
@@ -39,7 +40,7 @@ class md_categories extends CI_Model{
 											FROM 
 											`categories`,`websites` 
 											LEFT JOIN `favourites` 
-											ON `websites`.`id` = `favourites`.`web_id` 
+											ON `websites`.`id` = `favourites`.`web_id` AND `favourites`.`username`= '".mysql_real_escape_string($user)."'
 											WHERE 
 											`categories`.`slug`='".mysql_real_escape_string($cat_slug)."' AND 
 											`categories`.`status`!=1  AND 

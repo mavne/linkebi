@@ -32,10 +32,10 @@
 
 			<div class="link-search">
 				<h1 class="link-header links-hide-smartphone">მოიძიე სასურველი ვებ გვერდი</h1>
-				<form action="javascript:void(0)" method="post">
+				<form action="javascript:void(0)" method="get" id="saerch_form">
 					<input type="text" name="search-key" id="search-key" class="search-key" value="საკვანძო სიტყვა" />
 						<div class="btn-group links-search-button">
-						  <button type="button" class="btn btn-danger">ძიება</button>
+						  <button type="button" class="btn btn-danger" id="saerch_submit">ძიება</button>
 						</div>
 				</form>
 			</div>

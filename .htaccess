@@ -6,17 +6,17 @@ RewriteBase /
 
 RewriteCond %{REQUEST_URI} ^system.*
 
-RewriteRule ^(.*)$ /open.php?/$1 [L]
+RewriteRule ^(.*)$ /open.php?/$1 [QSA,L,NC]
 
 RewriteCond %{REQUEST_URI} ^application.*
 
-    RewriteRule ^(.*)$ /open.php?/$1 [L]
+    RewriteRule ^(.*)$ /open.php?/$1 [QSA,L,NC]
 
     RewriteCond %{REQUEST_FILENAME} !-f
 
     RewriteCond %{REQUEST_FILENAME} !-d
 
-    RewriteRule ^(.*)$ open.php?/$1 [L]
+    RewriteRule ^(.*)$ open.php?/$1 [QSA,L,NC]
 
 </IfModule>
 
