@@ -11,10 +11,16 @@
 			
 
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 registration margin-0-auto">
-				<form action="javascript:void(0)" method="post" class="navbar-form navbar-left">
+				<form action="/feedback" method="post" class="navbar-form navbar-left" id="feedback_form">
 					<h3>საკონტაქტო ფორმა</h3>
-					<div class="alert alert-success" role="alert">ოპერაცია წარმატებით დასრულდა</div>
-					<div class="alert alert-danger" role="alert">მოხდა შეცდომა</div>
+					<input type="hidden" name="form_type" value="feedback" />
+					<?php 
+					if(isset($form_message["feedback_message_done"]) && $form_message["feedback_message_done"]){
+						echo '<div class="alert alert-success" role="alert">'.$form_message["feedback_message_done"].'</div>';
+					}else if(isset($form_message["feedback_message"]) && $form_message["feedback_message"]){
+						echo '<div class="alert alert-danger" role="alert">'.$form_message["feedback_message"].'</div>';
+					}
+					?>
 					<div class="clearer"></div>
 					<div class="form-group">
 						<label for="namelname">სახელი გვარი:</label>
@@ -37,7 +43,7 @@
 					</div>
 							
 
-					<button type="submit" class="btn btn-default">გაგზავნა</button>
+					<button type="submit" class="btn btn-default" id="submit_feedback">გაგზავნა</button>
 				</form>
 			</div>
 

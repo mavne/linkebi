@@ -333,6 +333,43 @@ class md_form extends CI_Model
 				$out["password_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
 			}
 		}
+		else if(isset($_POST["form_type"]) && $_POST["form_type"]=="feedback")
+		{
+			if($this->val_require($_POST["namelname"]) && $this->val_require($_POST["email"]) && $this->val_require($_POST["subject"]) && $this->val_require($_POST["text"]))
+			{
+				if($this->val_email($_POST["email"]))
+				{//send email
+					$this->load->library('email');
+
+					$config['protocol'] = 'sendmail';
+					$config['charset'] = 'utf-8';
+					$config['wordwrap'] = TRUE;
+					$config['mailtype'] = 'html';
+
+					$this->email->initialize($config);
+
+					$this->email->from($_POST["email"], $_POST["subject"]);
+					$this->email->to('giorgigvazava87@gmail.com'); 
+					//$this->email->cc('another@another-example.com'); 
+					//$this->email->bcc('them@their-example.com'); 
+
+					$this->email->subject('Feedback links.404.ge - კონტაქტი');
+					$this->email->message($_POST["namelname"]."<br />".$_POST["text"]);	
+
+					$this->email->send();
+					//$this->email->print_debugger()
+					$out["feedback_message_done"] = "შეტყობინება წარმატებით გაიგზავნა !";
+				}
+				else
+				{
+					$out["feedback_message"] = "ელ-ფოსტის ფორმატი არასწორია !";
+				}
+			}
+			else
+			{
+				$out["feedback_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
+			}
+		}
 		return $out;
 	}
 

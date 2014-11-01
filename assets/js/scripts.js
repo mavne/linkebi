@@ -103,6 +103,11 @@ $(document).ready(function(){
 		$(".addwebsite_form").submit();
 	});
 
+	$("#submit_feedback").click(function(){
+		$("#feedback_form").submit();
+	});
+
+	//
 });
 
 

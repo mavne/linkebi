@@ -49,6 +49,7 @@ class md_categories extends CI_Model{
 											ORDER BY `websites`.`clicks` DESC");
 			}
 			
+			//$out = $query->result();
 			$out = $query->result();
 		}
 
