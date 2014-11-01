@@ -259,7 +259,8 @@ body{
 	margin: 0 auto 20px auto;
 	padding: 0;
 	width: 1260px;
-	min-height: 250px;
+	min-height: 450px;
+	background: #ffffff;
 }
 .link-webkit-shadow{
 	border: solid 1px #ccc;
@@ -854,7 +855,7 @@ table{
 		margin: -230px 0 0 0;
 	}
 	.links-column .thumbnail .data{
-		font-size: 12px !important;
+		font-size: 10px !important;
 	}
 
 }

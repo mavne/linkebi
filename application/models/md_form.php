@@ -117,6 +117,7 @@ class md_form extends CI_Model
 						$cat_ids = rtrim($cat_ids, ",");
 						//insert website
 						$data = array(
+						   'ip_address' => $_SERVER['REMOTE_ADDR'],
 						   'cat_id' => $cat_ids,
 						   'username' => $username,
 						   'name' => $_POST["name"],
@@ -337,6 +338,7 @@ class md_form extends CI_Model
 		{
 			if($this->val_require($_POST["namelname"]) && $this->val_require($_POST["email"]) && $this->val_require($_POST["subject"]) && $this->val_require($_POST["text"]))
 			{
+				$ip_address = $_SERVER['REMOTE_ADDR'];
 				if($this->val_email($_POST["email"]))
 				{//send email
 					$this->load->library('email');
@@ -374,6 +376,7 @@ class md_form extends CI_Model
 			if($this->val_require($_POST["name"]) && $this->val_require($_POST["desc"]) && $this->val_require($_POST["url"]))
 			{
 				$data = array(
+				'ip_address' => $_SERVER['REMOTE_ADDR'],
 				'username' => $this->session->userdata('username'),
 				'title' => mysql_real_escape_string($_POST["name"]),
 				'desc' => mysql_real_escape_string($_POST["desc"]), 
@@ -531,6 +534,7 @@ class md_form extends CI_Model
 		if($add)
 		{// add favourite
 			$data = array(
+			'ip_address' => $_SERVER['REMOTE_ADDR'],
 			'insert_date' => time(),
 			'web_id' => mysql_real_escape_string($wid),
 			'username' => mysql_real_escape_string($user) 
