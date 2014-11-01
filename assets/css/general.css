@@ -14,6 +14,9 @@ body{
     font-style: normal;
 }
 #vis{ visibility: hidden; }
+.links-zindex-1100{
+	z-index: 1100;
+}
 .links-position-relative{
 	position: relative;
 }
@@ -37,6 +40,12 @@ body{
 }
 .links-margin-bottom-15{
 	margin-bottom: 15px !important;
+}
+.links-empty-10{
+	margin: 0;
+	padding: 0;
+	width:100%;
+	height: 10px;
 }
 .links-top{
 	margin: 0;
@@ -322,6 +331,8 @@ body{
 .links-column .thumbnail .datas{
 	margin: 0;
 	padding: 0;
+	width: 100%;
+	clear:both;
 }
 .links-column .thumbnail .data{
 	margin: 0;
@@ -714,6 +725,10 @@ body{
 .links-navigation-userarea ul li a{
 	color: #555555;
 }
+.links-font-14{
+	font-size: 14px;
+	font-family: 'bulla';
+}
 .panel-heading{
 	font-family: 'bulla';
 	font-size: 14px;
@@ -738,8 +753,30 @@ table{
 .tr-goto:hover{
 	color: #e43f83;
 }
+.links-float-left{
+	float: left;
+}
+.links-float-right{
+	float: right;
+}
+.links-hide-desktop{
+	display: none;
+}
+.pagination li a{
+	color:#555555;
+}
 /*OWL carousel END*/
-
+.links-myurls{
+	position: relative;
+}
+.remove{
+	font-size: 22px !important;
+	color: #555555;
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	margin-top: -11px;
+}
 
 @media screen and (max-width: 1260px) {
 	.links-top .container .links-mask .links-head .row{
@@ -761,13 +798,15 @@ table{
 }
 
 @media screen and (max-width: 991px) {
-	.link-navigation ul li{
-		margin: 0 15px;
-		width: 20px;
-		height: 80px;
-	}
-	.link-navigation ul li a{
+	.link-navigation{
 		display: none;
+	}
+	.links-hide-desktop{
+		display: block;
+		margin:0;
+		padding:0;
+		float: right;
+		margin-top:20px;
 	}
 	.links-hide-tablet{
 		display: none;
@@ -789,12 +828,16 @@ table{
 	.links-column .thumbnail .data{
 		font-size: 14px !important;
 	}
-}
-
-@media screen and (max-width: 390px) {
-	.link-navigation{
-		display: none;
+	.links-margin-top-0-767{
+		margin-top: 0 !important;
 	}
+}
+@media screen and (max-width: 410px) {
+	.links-logo{
+		text-indent: -9999px;
+	}
+}
+@media screen and (max-width: 390px) {
 	.link-search form input[type="text"]{
 		width: 90% !important;
 	}
@@ -810,4 +853,5 @@ table{
 	.links-column .thumbnail .data{
 		font-size: 12px !important;
 	}
+
 }

@@ -24,34 +24,25 @@
 				<div class="links-navigation-userarea">
 					<ul class="nav nav-pills nav-stacked">
 	  					<li><a href="/myspace">ჩემი დამატებულები</a></li>
-	  					<li class="active"><a href="/favorites">ფავორიტები</a></li>
-	  					<li><a href="/mylinks">ჩემი ბმულები</a></li>
+	  					<li><a href="/favorites">ფავორიტები</a></li>
+	  					<li class="active"><a href="/mylinks">ჩემი ბმულები</a></li>
 	  					<li><a href="/account_settings">ანგარიშის რედაქტირება</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-lg-9 col-md-9 col-sm-9 registration">					
-			<?php
-			if(is_array($favourites)) {
-				foreach ($favourites as $row) {
-				?>
-					<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column" data-goto="<?php echo $row->{"url"}; ?>" data-wi="<?php echo $row->{"id"}; ?>">
-						<div class="thumbnail">
-							<div class="website-logo">
-								<img src="<?php echo $row->{"img"}; ?>" alt="<?php echo $row->{"name"}; ?>" title="<?php echo $row->{"name"}; ?>" />
-							</div>
-							<div class="datas">
-								<p class="info"><a><?php echo $row->{"name"}; ?></a></p>
-								<p class="views">ნახვა: <?php echo $row->{"clicks"}; ?></p>
-							</div>
-						</div>
-					</div><div class="clearer"></div>	
-				<?php
-				}
-			}else{
-				echo '<div class="alert alert-danger links-margin-top-10" role="alert">ჩანაწერი ვერ მოიძებნა !</div>';
-			}
-			?>
+				
+				<div class="btn-group links-margin-top-10 links-width-100 links-margin-top-0-767">
+					<button type="button" class="btn btn-default links-font-14 links-float-left">ბმულის დამატება</button>
+				</div>
+
+				
+				<!-- links -->
+				<?php echo $mylinksOut; ?>
+
+
+				<div class="links-empty-10"></div>
+
 			</div>
 			
 

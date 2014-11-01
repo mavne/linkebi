@@ -46,7 +46,8 @@
 									<a href="javascript:void(0)">
 										<?php echo str_replace("http://", "", strtolower($row->{"w_url"}) ); ?>
 									</a>
-								</p>
+									
+								</p> <!-- -->
 								<p class="views">ნახვა: <?php echo $row->{"w_clicks"}; ?></p>
 							</div>
 						</div>

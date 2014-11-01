@@ -6,7 +6,7 @@ class md_pagination extends CI_Model
 		$out = array();
 		$select = mysql_query($sql);
 		$nr = mysql_num_rows($select);
-		if(isset($_GET['pn'])){	
+		if(isset($page)){	
 			$pn = preg_replace('#[^0-9]#i','',$page);
 		}
 		else{
@@ -56,14 +56,14 @@ class md_pagination extends CI_Model
 		}
 		if($pn != 1){
 			$previous = $pn-1;
-			$paginationDisplay .= '<li><a href="'.$path.'1">'.l("first_page").'</a></li>';
-			$paginationDisplay .= '<li><a id="back" href="'.$path.$previous.'">'.l("back_page").'</a></li>';
+			$paginationDisplay .= '<li><a href="'.$path.'1">'.htmlentities("<<").'</a></li>';
+			$paginationDisplay .= '<li><a id="back" href="'.$path.$previous.'">'.htmlentities("<").'</a></li>';
 		}
 		$paginationDisplay .= $centerPages;
 		if($pn != $lastPage){
 			$nextPage = $pn+1;
-			$paginationDisplay .= '<li><a id="next" href="'.$path.$nextPage.'">'.l("next_page").'</a></li>';
-			$paginationDisplay .= '<li><a href="'.$path.$lastPage.'">'.l("last_page").'</a></li>';
+			$paginationDisplay .= '<li><a id="next" href="'.$path.$nextPage.'">'.htmlentities(">").'</a></li>';
+			$paginationDisplay .= '<li><a href="'.$path.$lastPage.'">'.htmlentities(">>").'</a></li>';
 		}
 		$outputList = $paginationDisplay."</ul></nav>";
 		if($nr <= $itemsPerPage)

@@ -40,6 +40,9 @@ class md_breadcraps extends CI_Model
 		}else if($url[3]=="search"){
 			$bread .= '<li><a href="/home">მთავარი</a></li>';
 			$bread .= '<li><a class="active">ძიება</a></li>';
+		}else if($url[3]=="mylinks"){
+			$bread .= '<li><a href="/home">მთავარი</a></li>';
+			$bread .= '<li><a class="active">ჩემი ბმულები</a></li>';
 		}else if($url[3]=="categories"){
 			$query  = $this->db->query("SELECT `name` FROM `categories` WHERE `slug`='".mysql_real_escape_string($url[4])."' AND `status`!=1 ");
 			if($query->num_rows() > 0){
@@ -48,11 +51,11 @@ class md_breadcraps extends CI_Model
 			}else{
 				$catName = "";
 			}
-			$bread .= '<li><a href="/home">მთავარი</li>';
-			$bread .= '<li><a class="active">'.$catName.'</li>';
+			$bread .= '<li><a href="/home">მთავარი</a></li>';
+			$bread .= '<li><a class="active">'.$catName.'</a></li>';
 		}
 		$bread .= '</ol>';
-		return $bread;
+		return $bread; //
 	}
 }
 ?>
