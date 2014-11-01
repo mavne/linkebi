@@ -275,6 +275,64 @@ class md_form extends CI_Model
 				}
 			}
 		}
+		else if(isset($_POST["form_type"]) && $_POST["form_type"]=="account_settings")
+		{
+			if
+			(
+				$this->val_require($_POST["namelname"]) && 
+				$this->val_require($_POST["email"])
+			)
+			{	
+				//user name
+				$username = $this->session->userdata('username');
+				//update website
+				$data = array(
+				   'namelname' => $_POST["namelname"],
+				   'email' => $_POST["email"]
+				);				
+				$update = $this->db->update('users', $data, array('username' => $username)); 
+
+				if(isset($update)){
+					$out["account_message_done"] = "მონაცემები წარმატებით დარედაქტირდა !";
+				}else{
+					$out["account_message"] = "მოხდა ფატალური შეცდომა !";
+				}
+			}
+			else
+			{
+				$out["account_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
+			}
+		}
+		else if(isset($_POST["form_type"]) && $_POST["form_type"]=="recover_password")
+		{
+			if($this->val_require($_POST["old"]) && $this->val_require($_POST["new"]) && $this->val_require($_POST["comfirm"]))
+			{
+				if($this->checkoldpass($_POST["old"],$this->session->userdata('username')))
+				{//checked old pass is right
+					if($this->val_equal($_POST["new"],$_POST["comfirm"]))
+					{// new password equals
+						$data = array(
+						'password' => md5($_POST["comfirm"])
+						);				
+						$update = $this->db->update('users', $data, array('username' => $this->session->userdata('username'))); 
+						if(isset($update)){
+							$out["password_message_done"] = "მონაცემები წარმატებით დარედაქტირდა !";
+						}else{
+							$out["password_message"] = "მოხდა ფატალური შეცდომა !";
+						}
+					}
+					else{
+						$out["password_message"] = "პაროლები არ ემთხვევა ერთმანეთს !";
+					}
+				}
+				else{
+					$out["password_message"] = "ძველი პაროლი არასწორია !";
+				}
+			}
+			else{
+				$out["password_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
+			}
+		}
 		return $out;
 	}
 
@@ -420,6 +478,25 @@ class md_form extends CI_Model
 		else
 		{//remove favourite
 			$this->db->delete('favourites', array('web_id' => mysql_real_escape_string($wid), 'username' => mysql_real_escape_string($user) )); 
+		}
+	}
+
+	public function checkoldpass($old,$username)
+	{
+		$query = $this->db->query("SELECT `id` FROM `users` WHERE `username`='".mysql_real_escape_string($username)."' AND `password`='".md5($old)."' AND `status`!=1 "); 
+		if($query->num_rows() > 0)
+		{
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function val_equal($var,$var2){
+		if($var == $var2){
+			return true;
+		}else{
+			return false;
 		}
 	}
 

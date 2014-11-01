@@ -23,9 +23,9 @@
 				</div>
 				<div class="links-navigation-userarea">
 					<ul class="nav nav-pills nav-stacked">
-	  					<li class="active"><a href="myspace">ჩემი დამატებულები</a></li>
+	  					<li class="active"><a href="/myspace">ჩემი დამატებულები</a></li>
 	  					<li><a href="/favorites">ფავორიტები</a></li>
-	  					<li><a href="#">ანგარიშის რედაქტირება</a></li>
+	  					<li><a href="/account_settings">ანგარიშის რედაქტირება</a></li>
 					</ul>
 				</div>
 			</div>

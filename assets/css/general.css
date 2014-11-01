@@ -17,6 +17,15 @@ body{
 .links-position-relative{
 	position: relative;
 }
+.links-links{
+	color: #e43f83;
+	font-size: 14px;
+	font-family: 'bulla';
+}
+.links-links:hover{
+	color: #e43f83;
+	text-decoration: underline;
+}
 .padding-top-20{
 	padding-top: 20px !important;
 }

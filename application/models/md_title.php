@@ -26,6 +26,8 @@ class Md_title extends CI_Model
 			$title = "ვებ საიტის რედაქტირება - ყველა ბმული ერთ საიტზე";
 		}else if($url[3]=="favorites"){
 			$title = "ფავორიტები - ყველა ბმული ერთ საიტზე";
+		}else if($url[3]=="account_settings"){
+			$title = "ანგარიშის რედაქტირება - ყველა ბმული ერთ საიტზე";
 		}else if($url[3]=="categories"){
 			$query  = $this->db->query("SELECT `name` FROM `categories` WHERE `slug`='".mysql_real_escape_string($url[4])."' AND `status`!=1 ");
 			if($query->num_rows() > 0){
@@ -36,7 +38,7 @@ class Md_title extends CI_Model
 			}
 			$title = $catName." - ყველა ბმული ერთ საიტზე";
 		}
-		return $title;
+		return $title; //
 	}
 
 }
