@@ -33,16 +33,14 @@
 			<div class="col-lg-9 col-md-9 col-sm-9 registration">					
 				
 				<form action="/mylinks/add" method="post" class="navbar-form navbar-left">
-					<h3>ბმულის დამატება</h3>
 					<input type="hidden" name="form_type" value="addlink" />
 					<?php 
-					if(isset($form_message["addwebsite_message_done"]) && $form_message["addwebsite_message_done"]){
-						echo '<div class="alert alert-success" role="alert">'.$form_message["addwebsite_message_done"].'</div>';
-					}else if(isset($form_message["addwebsite_message"]) && $form_message["addwebsite_message"]){
-						echo '<div class="alert alert-danger" role="alert">'.$form_message["addwebsite_message"].'</div>';
+					if(isset($form_message["linkadd_message_done"]) && $form_message["linkadd_message_done"]){
+						echo '<div class="alert alert-success links-margin-top-10" role="alert">'.$form_message["linkadd_message_done"].'</div>';
+					}else if(isset($form_message["linkadd_message"]) && $form_message["linkadd_message"]){
+						echo '<div class="alert alert-danger links-margin-top-10" role="alert">'.$form_message["linkadd_message"].'</div>';
 					}
 					?>
-					<div class="clearer"></div>
 					<div class="form-group">
 						<label for="name">დასახელება: <font color="red">*</font></label>
 						<input type="text" class="form-control" id="name" name="name" value="" />

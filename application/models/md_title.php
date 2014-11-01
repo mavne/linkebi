@@ -30,8 +30,10 @@ class Md_title extends CI_Model
 			$title = "ანგარიშის რედაქტირება - ყველა ბმული ერთ საიტზე";
 		}else if($url[3]=="search"){
 			$title = "ძიება - ყველა ბმული ერთ საიტზე";
-		}else if($url[3]=="mylinks"){
+		}else if($url[3]=="mylinks" && !isset($url[4])){
 			$title = "ჩემი ბმულები - ყველა ბმული ერთ საიტზე";
+		}else if($url[3]=="mylinks" && $url[4]=="add"){
+			$title = "ბმულის დამატება - ყველა ბმული ერთ საიტზე";
 		}else if($url[3]=="categories"){
 			$query  = $this->db->query("SELECT `name` FROM `categories` WHERE `slug`='".mysql_real_escape_string($url[4])."' AND `status`!=1 ");
 			if($query->num_rows() > 0){

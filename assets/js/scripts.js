@@ -50,6 +50,18 @@ $(document).ready(function(){
 		return false;
 	});
 
+	$('.remove').click(function(){
+		var li = $( this ).data('linkid');
+		var cl = $( this );
+		$.get( "http://links.404.ge/removeLinks", { linkid: li, form_type: "removeLinks" }, function( data ) {
+			if(data=="done")
+			{
+				cl.parent( "a" ).parent( ".list-group" ).fadeOut("slow"); 
+			}
+		});
+		return false;
+	});
+
 	$('.links-column').click(function(){
 		//alert("test");
 		var a = $( this ).data('slug');

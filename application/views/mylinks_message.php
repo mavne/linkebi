@@ -33,7 +33,7 @@
 			<div class="col-lg-9 col-md-9 col-sm-9 registration">					
 				
 				<div class="btn-group links-margin-top-10 links-width-100 links-margin-top-0-767">
-					<button type="button" class="btn btn-default links-font-14 links-float-left">ბმულის დამატება</button>
+					<button type="button" class="btn btn-default links-font-14 links-float-left" onclick="location.href='mylinks/add'">ბმულის დამატება</button>
 				</div>
 
 				

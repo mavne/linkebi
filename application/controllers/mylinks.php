@@ -57,6 +57,12 @@ class mylinks extends CI_Controller
 		
 		if($data["username"])
 		{
+			// post add links
+			if(isset($_POST["form_type"]))
+			{
+				$this->load->model("md_form");
+				$data["form_message"] = $this->md_form->formValidation();
+			}
 			// load title
 			$this->load->model("md_title");
 			$data["title"] = $this->md_title->getTitle();

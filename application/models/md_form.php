@@ -369,6 +369,31 @@ class md_form extends CI_Model
 			{
 				$out["feedback_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
 			}
+		}else if(isset($_POST["form_type"]) && $_POST["form_type"]=="addlink")
+		{
+			if($this->val_require($_POST["name"]) && $this->val_require($_POST["desc"]) && $this->val_require($_POST["url"]))
+			{
+				$data = array(
+				'username' => $this->session->userdata('username'),
+				'title' => mysql_real_escape_string($_POST["name"]),
+				'desc' => mysql_real_escape_string($_POST["desc"]), 
+				'url' => mysql_real_escape_string($_POST["url"]) 
+				);
+
+				$this->db->insert('links', $data); 
+
+				$out["linkadd_message_done"] = "ოპერაცია წარმატებით დასრულდა !";
+			}else
+			{
+				$out["linkadd_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
+			}
+		}else if(isset($_GET["form_type"]) && $_GET["form_type"]=="removeLinks")
+		{
+			$username = $this->session->userdata('username');
+			$id = $_GET["linkid"];
+
+			$this->db->delete('links', array('id' => $id, 'username'=> $username)); 
+			$out = "done";
 		}
 		return $out;
 	}
