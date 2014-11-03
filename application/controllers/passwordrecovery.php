@@ -66,6 +66,15 @@ class passwordrecovery extends CI_Controller
 
 		$data["code"] = $id;
 
+		//check code
+		$this->load->model("md_codechecker");
+		$data["codechecker"] = $this->md_codechecker->checker();
+
+		//urlcode
+		$this->load->model("md_current_url");
+		$u = $this->md_current_url->getUrl();
+		$data["urlcode"] = $u[5];
+
 		// load view page
 		$this->load->view('rec_message', $data); 
 	}

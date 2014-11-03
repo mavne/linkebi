@@ -407,7 +407,7 @@ class md_form extends CI_Model
 						
 						$debug = $this->md_sendemail->sendit($texttype,$fromemail,$emailname,$_POST["email"],$emailsubject,$text,false,false);
 						
-						$out["rec_message_done"] = "ოპერაცია წარმატებით დასრულდა ! ";
+						$out["rec_message_done"] = "ტექსტური შეტყობინება გამოგზავნილია თქვენს ელ-ფოსტაზე: ".$_POST["email"]." ! ";
 					}
 					else
 					{
@@ -420,6 +420,38 @@ class md_form extends CI_Model
 				}				
 			}else{
 				$out["rec_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
+			}
+		}
+		else if(isset($_POST["form_type"]) && $_POST["form_type"]=="change_password")
+		{
+			if($this->val_require($_POST["comfirm"]) && $this->val_require($_POST["new"]))
+			{
+				if($_POST["comfirm"]==$_POST["new"])
+				{
+					//load url
+					$this->load->model("md_current_url");
+					$url = $this->md_current_url->getUrl();
+					// select user id
+					$query = $this->db->query("SELECT `email` FROM `recovery` WHERE `code`='".mysql_real_escape_string($url[5])."' ");
+					$result = $query->row();
+
+					//update password
+					$data = array(
+					'`password`' => md5($_POST["new"])
+					);
+
+					$this->db->where('email', $result->{"email"});
+					$this->db->update('users', $data); 
+
+					$out["change_message_done"] = "პაროლი წარმატებით განახლდა !";	
+				}else
+				{
+					$out["change_message"] = "პაროლები არ ემთხვევა ერთმანეთს !";	
+				}
+				
+			}else
+			{
+				$out["change_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";	
 			}
 		}
 		return $out;
