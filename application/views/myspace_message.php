@@ -32,21 +32,27 @@
 			</div>
 			<div class="col-lg-9 col-md-9 col-sm-9 registration">					
 			<?php
-			foreach ($mywebsites as $row) {
-			?>
-				<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column" data-goto="<?php echo $row->{"url"}; ?>" data-wi="<?php echo $row->{"id"}; ?>">
-					<div class="thumbnail">
-						<div class="website-logo">
-							<img src="<?php echo $row->{"img"}; ?>" alt="<?php echo $row->{"name"}; ?>" title="<?php echo $row->{"name"}; ?>" />
+			if(count($mywebsites))
+			{
+				foreach ($mywebsites as $row) {
+				?>
+					<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column" data-goto="<?php echo $row->{"url"}; ?>" data-wi="<?php echo $row->{"id"}; ?>">
+						<div class="thumbnail">
+							<div class="website-logo">
+								<img src="<?php echo $row->{"img"}; ?>" alt="<?php echo $row->{"name"}; ?>" title="<?php echo $row->{"name"}; ?>" />
+							</div>
+							<div class="datas">
+								<p class="info"><a><?php echo $row->{"name"}; ?></a></p>
+								<p class="views">ნახვა: <?php echo $row->{"clicks"}; ?></p>
+								<p class="views"><a href="website/edit/<?php echo $row->{"id"}; ?>">რედაქტირება</a></p>
+							</div>
 						</div>
-						<div class="datas">
-							<p class="info"><a><?php echo $row->{"name"}; ?></a></p>
-							<p class="views">ნახვა: <?php echo $row->{"clicks"}; ?></p>
-							<p class="views"><a href="website/edit/<?php echo $row->{"id"}; ?>">რედაქტირება</a></p>
-						</div>
-					</div>
-				</div><div class="clearer"></div>	
-			<?php
+					</div><div class="clearer"></div>	
+				<?php
+				}
+			}else
+			{
+				echo '<div class="alert alert-danger links-margin-top-10" role="alert">ჩანაწერი ვერ მოიძებნა !</div>';
 			}
 			?>
 			</div>

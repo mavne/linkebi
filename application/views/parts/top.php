@@ -4,7 +4,7 @@
 			<div class="links-head">
 				<div class="row">
 					<div class="col-lg-6 links-float-left">
-						<div class="links-logo">Links.404.ge</div>
+						<div class="links-logo"></div>
 					</div>
 					<div class="col-lg-6 links-float-right">
 						<nav class="link-navigation">

@@ -74,7 +74,11 @@
 						<label for="auth_username">პაროლი: <font color="red">*</font></label>
 						<input type="password" class="form-control" id="auth_password" name="auth_password" value="" />
 					</div>
-					<div class="clearer"></div>					
+					<div class="clearer"></div>	
+
+					<div class="form-group">
+						<a href="/passwordrecovery" class="links-links">პაროლის აღდგენა</a>
+					</div>				
 
 					<button type="submit" class="btn btn-default" id="submit_auth">ავტორიზაცია</button>
 				</form>

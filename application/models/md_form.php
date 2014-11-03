@@ -397,6 +397,24 @@ class md_form extends CI_Model
 
 			$this->db->delete('links', array('id' => $id, 'username'=> $username)); 
 			$out = "done";
+		}else if(isset($_POST["form_type"]) && $_POST["form_type"]=="rec_password")
+		{
+			if($this->val_require($_POST["email"]))
+			{
+				if($this->emailExists($_POST["email"]))
+				{
+
+					$out["rec_message_done"] = "ოპერაცია წარმატებით დასრულდა !";
+				}
+				else
+				{
+					$out["rec_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
+				}
+
+				
+			}else{
+				$out["rec_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
+			}
 		}
 		return $out;
 	}
