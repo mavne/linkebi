@@ -24,6 +24,10 @@ class account_settings extends CI_Controller
 			$this->load->model("md_navigation");
 			$data["nav"] = $this->md_navigation->nav();
 
+			// current url 
+			$this->load->model("md_current_url");
+			$data['cur_url'] = $this->md_current_url->getUrl();
+
 			//if post
 			if(isset($_POST["form_type"]) && $_POST["form_type"]=="account_settings")
 			{

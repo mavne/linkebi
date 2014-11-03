@@ -9,7 +9,9 @@ class Search extends CI_Controller
 		$data["user_agent"] = $this->session->userdata('user_agent');
 		$data["last_activity"] = $this->session->userdata('last_activity');
 		$data["username"] = $this->session->userdata('username');
-
+		// current url 
+		$this->load->model("md_current_url");
+		$data['cur_url'] = $this->md_current_url->getUrl();
 		// load title
 		$this->load->model("md_title");
 		$data["title"] = $this->md_title->getTitle();

@@ -11,7 +11,9 @@ class Myspace extends CI_Controller
 		$data["username"] = $this->session->userdata('username');
 		$data["namelname"] = $this->session->userdata('namelname');
 		$data["email"] = $this->session->userdata('email');
-		
+		// current url 
+		$this->load->model("md_current_url");
+		$data['cur_url'] = $this->md_current_url->getUrl();
 		if($data["username"])
 		{
 			// load title
