@@ -836,11 +836,14 @@ table{
 	.links-margin-top-0-767{
 		margin-top: 0 !important;
 	}
+	.links-head{ padding: 0 0 20px 0 !important; height: auto !important; }
+	.link-content .container{ margin: 45px 5% 20px 5% !important; }
 }
-@media screen and (max-width: 410px) {
-	.links-logo{
-		text-indent: -9999px;
-	}
+@media screen and (max-width: 460px) {
+	.links-top .container .links-mask .links-head .row{ height: auto !important; }
+	.links-mobile-float-none{ float:none !important; width:100% !important; }
+	.links-logo{ float:none !important; margin: 16px auto !important; }
+	.links-mobile-center{ float: none !important; width:100px !important; margin: 0 auto !important; }
 }
 @media screen and (max-width: 390px) {
 	.link-search form input[type="text"]{

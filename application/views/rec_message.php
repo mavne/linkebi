@@ -12,13 +12,13 @@
 
 
 			<div class="col-lg-12 registration">					
-				<form action="/account_settings/passwordchange" method="post" class="navbar-form navbar-left" id="registration">
+				<form action="/passwordrecovery" method="post" class="navbar-form navbar-left" id="registration">
 					<input type="hidden" name="form_type" value="rec_password" />
 					<?php 
-					if(isset($form_message["password_message_done"]) && $form_message["password_message_done"]){
-						echo '<div class="alert alert-success links-margin-top-10" role="alert">'.$form_message["password_message_done"].'</div>';
-					}else if(isset($form_message["password_message"]) && $form_message["password_message"]){
-						echo '<div class="alert alert-danger links-margin-top-10" role="alert">'.$form_message["password_message"].'</div>';
+					if(isset($form_message["rec_message_done"]) && $form_message["rec_message_done"]){
+						echo '<div class="alert alert-success links-margin-top-10" role="alert">'.$form_message["rec_message_done"].'</div>';
+					}else if(isset($form_message["rec_message"]) && $form_message["rec_message"]){
+						echo '<div class="alert alert-danger links-margin-top-10" role="alert">'.$form_message["rec_message"].'</div>';
 					}
 					?>					
 					<div class="clearer"></div>
@@ -28,7 +28,7 @@
 					?>
 						<div class="form-group">
 						<label for="email">ელ-ფოსტა: <font color="red">*</font></label>
-						<input type="password" class="form-control" id="email" name="email" value="" />
+						<input type="text" class="form-control" id="email" name="email" value="" />
 						</div>
 						<div class="clearer"></div>
 					<?php

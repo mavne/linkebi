@@ -3,10 +3,10 @@
 		<div class="links-mask">
 			<div class="links-head">
 				<div class="row">
-					<div class="col-lg-6 links-float-left">
+					<div class="col-lg-6 links-float-left links-mobile-float-none">
 						<div class="links-logo"></div>
 					</div>
-					<div class="col-lg-6 links-float-right">
+					<div class="col-lg-6 links-float-right links-mobile-float-none">
 						<nav class="link-navigation">
 							<ul>	
 								<?php
@@ -27,7 +27,7 @@
 							</ul>
 						</nav>
 
-						<div class="btn-group links-hide-desktop links-zindex-1100">
+						<div class="btn-group links-hide-desktop links-zindex-1100 links-mobile-center">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 							ნავიგაცია
 							<span class="caret"></span>

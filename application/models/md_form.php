@@ -340,25 +340,11 @@ class md_form extends CI_Model
 			{
 				$ip_address = $_SERVER['REMOTE_ADDR'];
 				if($this->val_email($_POST["email"]))
-				{//send email
-					$this->load->library('email');
+				{
+					//load email function
+					$this->load->model("md_sendemail");
+					$this->md_sendemail->sendit("html",$_POST["email"],$_POST["namelname"],'giorgigvazava87@gmail.com',$_POST["subject"],$_POST["text"],false,false);
 
-					$config['protocol'] = 'sendmail';
-					$config['charset'] = 'utf-8';
-					$config['wordwrap'] = TRUE;
-					$config['mailtype'] = 'html';
-
-					$this->email->initialize($config);
-
-					$this->email->from($_POST["email"], $_POST["subject"]);
-					$this->email->to('giorgigvazava87@gmail.com'); 
-					//$this->email->cc('another@another-example.com'); 
-					//$this->email->bcc('them@their-example.com'); 
-
-					$this->email->subject('Feedback links.404.ge - კონტაქტი');
-					$this->email->message($_POST["namelname"]."<br />".$_POST["text"]);	
-
-					$this->email->send();
 					//$this->email->print_debugger()
 					$out["feedback_message_done"] = "შეტყობინება წარმატებით გაიგზავნა !";
 				}
@@ -401,17 +387,37 @@ class md_form extends CI_Model
 		{
 			if($this->val_require($_POST["email"]))
 			{
-				if($this->emailExists($_POST["email"]))
-				{
-
-					$out["rec_message_done"] = "ოპერაცია წარმატებით დასრულდა !";
+				if($this->val_email($_POST["email"]))
+				{	
+					if($this->emailExists($_POST["email"]))
+					{
+						//load email function
+						$this->load->model("md_sendemail");
+						// GENERATE PASSWORD
+						$this->load->model("md_generate");
+						$generate = $this->md_generate->code(6);
+						//insert passrecovery	
+						$this->insertpassrec($generate,$_POST["email"]);
+						//e-mail
+						$texttype="html";
+						$fromemail = 'recover@linkebi.ge';
+						$emailname = 'პაროლის აღდგენა';
+						$emailsubject = 'Links.404.ge';
+						$text = 'პაროლის შესაცვლელად მიჰყევით ბმულს: <a href="http://links.404.ge/passwordrecovery/code/'.$generate.'">დაკლიკეთ აქ</a>';
+						
+						$debug = $this->md_sendemail->sendit($texttype,$fromemail,$emailname,$_POST["email"],$emailsubject,$text,false,false);
+						
+						$out["rec_message_done"] = "ოპერაცია წარმატებით დასრულდა ! ";
+					}
+					else
+					{
+						$out["rec_message"] = "აღნიშნული ელ-ფოსტა არ არის დარეგისტრირებული ჩვენს სისტემაში !";
+					}
 				}
 				else
 				{
-					$out["rec_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
-				}
-
-				
+					$out["rec_message"] = "ელ-ფოსტის ფორმატი არასწორია !";
+				}				
 			}else{
 				$out["rec_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";
 			}
@@ -582,6 +588,28 @@ class md_form extends CI_Model
 		}else{
 			return false;
 		}
+	}
+
+	public function emailExists($email)
+	{
+		$query = $this->db->query("SELECT `id` FROM `users` WHERE `email`='".mysql_real_escape_string($email)."' ");
+		if($query->num_rows() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function insertpassrec($code,$email)
+	{
+		$data = array(
+		   '`ip_address`' => $_SERVER["REMOTE_ADDR"],
+		   '`date`' => time(),
+		   '`code`' => mysql_real_escape_string($code), 
+		   '`email`' => mysql_real_escape_string($email)
+		);
+
+		$this->db->insert('recovery', $data); 
 	}
 
 }
