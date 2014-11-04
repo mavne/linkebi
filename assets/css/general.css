@@ -122,6 +122,7 @@ body{
 	text-transform: uppercase;
 	cursor: pointer;
 	width:230px;
+	background-size: 210px 35px;
 }
 .link-navigation{
 	margin: 0;
