@@ -454,6 +454,34 @@ class md_form extends CI_Model
 				$out["change_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";	
 			}
 		}
+		else if(isset($_POST["form_type"]) && $_POST["form_type"]=="adminpanel")
+		{
+			if($this->val_require($_POST["username"]) && $this->val_require($_POST["password"]))
+			{
+				$query = $this->db->query("SELECT `username` FROM `system_admin` WHERE `username`='".mysql_real_escape_string($_POST["username"])."' AND `password`='".mysql_real_escape_string($_POST["password"])."' ");
+				if($query->num_rows() > 0)
+				{// save session and redirect 301
+					
+
+					$result = $query->result();
+					foreach($result as $row)
+					{
+						$newdata["cms_username"] = $row->{"username"};
+					}
+					$this->session->set_userdata($newdata);
+
+
+					$this->load->model("md_redir");
+					$this->md_redir->gotourl("/ci_admin/welcome");
+				}else{
+					$out["admin_message"] = "ადმინის სახელი ან პაროლი არასწორია !";	
+				}
+			}
+			else
+			{
+				$out["admin_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";	
+			}
+		}
 		return $out;
 	}
 

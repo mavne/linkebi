@@ -44,7 +44,15 @@
 							<div class="datas">
 								<p class="info">
 									<a href="javascript:void(0)">
-										<?php echo str_replace("http://", "", strtolower($row->{"w_url"}) ); ?>
+										<?php 
+										$find_array = array(
+											"http://",
+											"https://",
+											"/",
+											"www."
+											);
+										echo str_replace($find_array, "", strtolower($row->{"w_url"}) ); 
+										?>
 									</a>
 									
 								</p> <!-- -->
