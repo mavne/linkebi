@@ -51,7 +51,7 @@ class ci_admin extends CI_Controller
 			$data["getjs"] = $this->getjs(true);
 
 			// load view page
-			$this->load->view('ciadmin_home_message', $data);
+			$this->load->view('ciadmin_homepage', $data);
 		}
 		else
 		{
