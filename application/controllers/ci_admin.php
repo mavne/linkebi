@@ -49,9 +49,87 @@ class ci_admin extends CI_Controller
 			$data["css"] = $this->getcss(true);
 			//load js
 			$data["getjs"] = $this->getjs(true);
+			//load category count
+			$this->load->model("md_count_data");
+			$data["category_count"] = $this->md_count_data->cou("category");
+			$data["category_website"] = $this->md_count_data->cou("website");
+			$data["category_websitenot"] = $this->md_count_data->cou("websitenot");
+			$data["category_users"] = $this->md_count_data->cou("users");
+			//load user list
+			$this->load->model("md_user_list");
+			$data["user_list"] = $this->md_user_list->lists();
+			// load 10 website
+			$this->load->model("md_website_lists");
+			$data["website_list"] = $this->md_website_lists->getall("*",1,'/',10,1);
 
 			// load view page
 			$this->load->view('ciadmin_homepage', $data);
+		}
+		else
+		{
+			$this->load->model("md_redir");
+			$this->md_redir->gotourl("/ci_admin");
+		}
+	}
+
+
+	public function categories($type = "table")
+	{
+		// session
+		$data["session_id"] = $this->session->userdata('session_id');
+		$data["ip_address"] = $this->session->userdata('ip_address');
+		$data["user_agent"] = $this->session->userdata('user_agent');
+		$data["last_activity"] = $this->session->userdata('last_activity');
+
+		if($this->session->userdata('cms_username'))
+		{
+			// user
+			$data["cms_username"] = $this->session->userdata('cms_username');
+			// current url 
+			$this->load->model("md_current_url");
+			$data['cur_url'] = $this->md_current_url->getUrl();
+			//load css
+			$data["css"] = $this->getcss(true);
+			//load js
+			$data["getjs"] = $this->getjs(true);
+			//post
+			if(isset($_POST["form_type"]))
+			{
+				$this->load->model("md_form");
+				$data["message"] = $this->md_form->formValidation();
+			}
+			// load redirect	
+			$this->load->model("md_redir");	
+			// load proper view
+			switch($type)
+			{
+				case "table":
+				$viewpage = "ciadmin_categories";
+				break;
+				case "add":
+				$viewpage = "ciadmin_categories_add";
+				break;
+				case "up":
+				$this->change_position("up");
+				break;
+				case "down":
+				$this->change_position("down");
+				break;
+				case "edit": 
+				$edit_id = (!empty($data['cur_url'][6])) ? $data['cur_url'][6] : "";
+				if(!$edit_id){
+					$this->md_redir->gotourl("/error"); 
+				}
+				$this->load->model("md_categories");
+				$data["category"] = $this->md_categories->cats(false,false,$edit_id);
+				$viewpage = "ciadmin_categories_edit";
+				break;
+			}
+			// load categories
+			$this->load->model("md_categories");
+			$data["categories"] = $this->md_categories->cats();
+			// load view page
+			$this->load->view($viewpage, $data);
 		}
 		else
 		{
@@ -94,6 +172,63 @@ class ci_admin extends CI_Controller
 			$out .= '';
 		}
 		return $out;
+	}
+
+	public function change_position($type)
+	{
+		$this->load->model("md_current_url");
+		$url = $this->md_current_url->getUrl();
+		$query = $this->db->query("SELECT `position` FROM `categories` WHERE `id`='".(int)$url[6]."' ");
+		if($query->num_rows() > 0){
+			$row = $query->row();
+			$position = $row->{"position"};
+			if($type=="up"){
+				$updata = array(
+					'position'=>0,
+					);
+				$updata2 = array(
+					'position'=>(int)($position-1),
+					);
+				$updata3 = array(
+					'position'=>(int)$position,
+					);
+				$this->db->update('categories', $updata, array('`position`'=>(int)($position-1)) ); // 1 = 0
+				if(!$this->db->_error_number()){
+					$this->db->update('categories', $updata2, array('`position`'=>(int)($position)) ); // 2 = 1
+					if(!$this->db->_error_number()){
+						$this->db->update('categories', $updata3, array('`position`'=>0)); // 0 = 2
+						$this->load->model("md_redir");
+						$this->md_redir->gotourl("/ci_admin/categories");
+					}
+				}
+			}else if($type == "down"){
+				##
+				#	5 = 6 | 	
+				##
+				$updata = array(
+					'position'=>0,
+					);
+				$updata2 = array(
+					'position'=>(int)($position+1),
+					);
+				$updata3 = array(
+					'position'=>(int)$position,
+					);
+				$this->db->update('categories', $updata, array('`position`'=>(int)($position+1)) ); // 19 = 0
+				if($this->db->affected_rows()){
+					$this->db->update('categories', $updata2, array('`position`'=>(int)($position)) ); // 2 = 1
+					if($this->db->affected_rows()){
+						$this->db->update('categories', $updata3, array('`position`'=>0)); // 0 = 2
+						$this->load->model("md_redir");
+						$this->md_redir->gotourl("/ci_admin/categories");
+					}else{
+						$this->md_redir->gotourl("/ci_admin/categories");
+					}
+				}else{
+					$this->md_redir->gotourl("/ci_admin/categories");
+				}
+			}
+		}
 	}
 }
 ?>

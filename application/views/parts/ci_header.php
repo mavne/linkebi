@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <base href="http://links.404.ge" />
     <title>LINKEBI - ადმინ პანელი</title>
-
+    <link rel="icon" href="http://links.404.ge/assets/img/favicon.gif">
     <!-- Bootstrap Core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 

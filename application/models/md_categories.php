@@ -1,8 +1,10 @@
 <?php
 class md_categories extends CI_Model{
-	public function cats($cat_slug = false, $usersname = false)
+	public function cats($cat_slug = false, $usersname = false, $edit_id = false)
 	{
 		if(!$cat_slug){
+			if($edit_id){ $sq = ' AND `categories`.`id`='.(int)$edit_id; }
+			else{ $sq = ''; }
 			//categories
 			$query = $this->db->query("SELECT 
 			`categories`.`id` AS cats,
@@ -10,8 +12,13 @@ class md_categories extends CI_Model{
 			`categories`.`icon` AS icon,
 			`categories`.`slug` AS slug 
 			FROM `categories`
-			WHERE `categories`.`status`!=1 ORDER BY `categories`.`position` ASC");
-			$out = $query->result();
+			WHERE `categories`.`status`!=1 $sq ORDER BY `categories`.`position` ASC");
+			if($edit_id){
+				$out = $query->row();
+			}
+			else{
+				$out = $query->result();
+			}
 		}
 		else 
 		{

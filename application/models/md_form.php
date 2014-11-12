@@ -482,6 +482,49 @@ class md_form extends CI_Model
 				$out["admin_message"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";	
 			}
 		}
+		else if(isset($_POST["form_type"]) && $_POST["form_type"]=="add_category")
+		{
+			if($this->val_require($_POST["catname"]) && $this->val_require($_POST["icon"]) && $this->val_require($_POST["slug"]))
+			{
+				$query = $this->db->query("SELECT MAX(`position`) AS maxposition FROM `categories` WHERE `status`!=1");
+				if($query->num_rows() > 0){ $row = $query->row(); $position = $row->{"maxposition"} + 1; }
+				$table = "`categories`";
+				$data = array(
+					'`name`'=>mysql_real_escape_string($_POST["catname"]),
+					'`icon`'=>mysql_real_escape_string($_POST["icon"]),
+					'`slug`'=>mysql_real_escape_string($_POST["slug"]),
+					'`position`'=>(int)$position,
+					);
+				$this->insert_to_db($table,$data);
+				$out["category_add_message"] = "ოპერაცია წარმატებით დასრულდა !";	
+			}
+			else
+			{
+				$out["category_add_error"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";	
+			}
+		}
+		else if(isset($_POST["form_type"]) && $_POST["form_type"]=="edit_category")
+		{
+			if($this->val_require($_POST["catname"]) && $this->val_require($_POST["icon"]) && $this->val_require($_POST["slug"]))
+			{
+				//get current url
+				$this->load->model("md_current_url");
+				$url = $this->md_current_url->getUrl();
+				// update data
+				$table = "`categories`";
+				$data = array(
+					'`name`'=>mysql_real_escape_string($_POST["catname"]),
+					'`icon`'=>mysql_real_escape_string($_POST["icon"]),
+					'`slug`'=>mysql_real_escape_string($_POST["slug"])
+					);
+				$this->update_db($table,$data,$url[6]);
+				$out["category_add_message"] = "ოპერაცია წარმატებით დასრულდა !";	
+			}
+			else
+			{
+				$out["category_add_error"] = "გთხოვთ შეავსოთ სავალდებულო ველები !";	
+			}
+		}
 		return $out;
 	}
 
@@ -670,6 +713,16 @@ class md_form extends CI_Model
 		);
 
 		$this->db->insert('recovery', $data); 
+	}
+
+	public function insert_to_db($table,$data)
+	{
+		$this->db->insert($table, $data); 
+	}
+
+	public function update_db($table,$data,$id){
+		$this->db->where('id', $id);
+		$this->db->update($table, $data); 
 	}
 
 }
