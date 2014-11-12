@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class ci_admin extends CI_Controller
 {
 	public function index()
@@ -115,6 +115,9 @@ class ci_admin extends CI_Controller
 				case "down":
 				$this->change_position("down");
 				break;
+				case "delete":
+				$this->delete_query();
+				break;
 				case "edit": 
 				$edit_id = (!empty($data['cur_url'][6])) ? $data['cur_url'][6] : "";
 				if(!$edit_id){
@@ -228,6 +231,33 @@ class ci_admin extends CI_Controller
 					$this->md_redir->gotourl("/ci_admin/categories");
 				}
 			}
+		}
+	}
+
+	public function delete_query()
+	{
+		//load url
+		$this->load->model("md_current_url");
+		$url = $this->md_current_url->getUrl();
+		//select currecnt position
+		$query = $this->db->query("SELECT `position` FROM `categories` WHERE `id`='".$url[6]."' ");
+		if($query->num_rows() > 0)
+		{
+			$row = $query->row();
+			$position = $row->{"position"};
+			// delete current  position
+			$this->db->delete('categories', array('id' => $url[6])); 
+			// update others position
+
+			$this->db->set('position', '(position-1)', false);
+			$this->db->where("`position` > $position");
+			$this->db->update('categories');
+
+			// $data = array('position'=>'(position-1)');
+			// $this->db->update('categories', $data, "`position` > $position");
+
+			// go to category page
+			$this->md_redir->gotourl("/ci_admin/categories");
 		}
 	}
 }

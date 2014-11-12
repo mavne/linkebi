@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class account_settings extends CI_Controller
 {
 	public function index()
