@@ -7,13 +7,8 @@
                     <li <?php echo ($cur_url[4]=="categories") ? 'class="active"' : ''?>>
                         <a href="/ci_admin/categories"><i class="fa fa-fw fa-list"></i> კატეგორია</a>
                     </li>
-                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#permi"><i class="fa fa-fw fa-ban"></i> ვებ გვერდის ნებართვა</a>
-                        <ul id="permi" class="collapse">
-                            <li>
-                                <a href="#">მაგიდა</a>
-                            </li>
-                        </ul>
+                     <li <?php echo ($cur_url[4]=="websites") ? 'class="active"' : ''?>>
+                        <a href="/ci_admin/websites"><i class="fa fa-fw fa-chain"></i> ვებ გვერდები</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#commerce"><i class="fa fa-fw fa-file-text"></i> რეკლამა</a>

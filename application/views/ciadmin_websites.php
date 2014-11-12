@@ -25,14 +25,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            კატეგორიები <small>&nbsp;</small>
+                            ვებ გვერდები <small>&nbsp;</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <a href="/ci_admin/welcome"><i class="fa fa-dashboard"></i> მთავარი გვერდი</a>
                             </li> 
                             <li class="active">
-                                <i class="fa fa-list"></i> კატეგორია
+                                <i class="fa fa-chain"></i> ვებ გვერდები
                             </li>
                         </ol>
                     </div>
@@ -42,43 +42,32 @@
                     
                     
                     <div class="col-lg-12">
-                     <p><a href="/ci_admin/categories/add" class="btn btn-primary btn-md" role="button">დამატება</a> </p>
+                     <p>
+                     <a href="/ci_admin/websites/add" class="btn btn-primary btn-md" role="button">დამატება</a>
+                      <a href="/ci_admin/websites" class="btn btn-default btn-md" role="button">ყველა</a>
+                     <a href="/ci_admin/websites/allowed" class="btn btn-success btn-md" role="button">ნება დართული</a>
+                     <a href="/ci_admin/websites/disallowed" class="btn btn-danger btn-md" role="button">ნებართვის გარეშე</a>
+                      </p>
                         <div class="panel panel-default">
-                          
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover table-striped">
                                         <thead>
                                             <tr>
                                                 <th style="width:50px">#</th>
-                                                <th style="width:100px">გადაადგილება</th>
                                                 <th>დასახელება</th>
+                                                <th>კატეგორია</th>
+                                                <th>ნახვა</th>
+                                                <th>ბმული</th>
+                                                <th>ნებართვა</th>
                                                 <th>მოქმედება</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                        <?php
-                                        foreach($categories as $row)
-                                        {
-                                        ?>
-                                            <tr>
-                                                <td><?php echo $row->{"cats"}; ?></td>
-                                                <td>
-                                                    <a href="/ci_admin/categories/up/<?php echo $row->{"cats"}; ?>"><i class="fa fa-arrow-up"></i></a>
-                                                    <a href="/ci_admin/categories/down/<?php echo $row->{"cats"}; ?>"><i class="fa fa-arrow-down"></i></a>
-                                                </td>
-                                                <td><?php echo $row->{"name"}; ?></td>
-                                                <td>
-                                                <a href="/ci_admin/categories/edit/<?php echo $row->{"cats"}; ?>"><i class="fa fa-pencil-square-o"></i></a>
-                                                <a href="/ci_admin/categories/delete/<?php echo $row->{"cats"}; ?>"><i class="fa fa-times"></i></a>
-                                                </td>
-                                            </tr>
-                                        <?php
-                                        }
-                                        ?>  
-                                        </tbody>
+                                        <?php echo $websites[0]; ?>
                                     </table>
+
                             </div>
                         </div>
+                         <?php echo (!empty($websites[1])) ? $websites[1] : ""; ?>
                     </div>
                 </div>
                 <!-- /.row -->
