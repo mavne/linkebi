@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="/ci_admin/categories/">
                                 <div class="panel-footer">
                                     <span class="pull-left">ნახვა</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -72,11 +72,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="ci_admin/websites/alloweds">
                                 <div class="panel-footer">
-                                    <span class="pull-left">ნახვა</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
+                                        <span class="pull-left">ნახვა</span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                        <div class="clearfix"></div>
                                 </div>
                             </a>
                         </div>
@@ -94,7 +94,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="ci_admin/websites/disallowed">
                                 <div class="panel-footer">
                                     <span class="pull-left">ნახვა</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -116,7 +116,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="ci_admin/websites">
                                 <div class="panel-footer">
                                     <span class="pull-left">ნახვა</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -137,14 +137,10 @@
                             </div>
                             <div class="panel-body">
                                 <div class="list-group">
-                                    <!-- <a href="#" class="list-group-item">
-                                        <span class="badge">just now</span>
-                                        <i class="fa fa-fw fa-user"></i> Calendar updated
-                                    </a> -->
                                    <?php echo $user_list; ?>
                                 </div>
                                 <div class="text-right">
-                                    <a href="#">ნახვა <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="/ci_admin/webusers">ნახვა <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -185,7 +181,7 @@
                                     </table>
                                 </div>
                                 <div class="text-right">
-                                    <a href="#">ყველა <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="/ci_admin/websites">ყველა <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>

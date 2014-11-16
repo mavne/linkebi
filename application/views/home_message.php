@@ -4,28 +4,36 @@
 ?>
 <section class="link-content">
 	<div class="container link-webkit-shadow">
-		<div class="row">
+			<!-- 
+			##
+			#	Commerce start
+			##
+			<div class="row">
 			<div class="span12">
 
-              <div id="owl-example" class="owl-carousel">
-              	<?php
-              	foreach($commerce as $row)
-              	{
-              	?>
-	                <div class="item darkCyan">
-	                  <img src="<?php echo $row->{"img"}; ?>" width="100%" alt="404.ge" />
-	                    <h3><?php echo $row->{"title"}; ?></h3>
-	                    <h4><a href="<?php echo $row->{"url"}; ?>" target="_blank"><?php echo $row->{"url"}; ?></a></h4>
-	                </div>
-                <?php
-            	}
-                ?>
+			  <div id="owl-example" class="owl-carousel">
+			  	<?php
+			  	foreach($commerce as $row)
+			  	{
+			  	?>
+			        <div class="item darkCyan">
+			          <img src="<?php echo $row->{"img"}; ?>" width="100%" alt="404.ge" />
+			            <h3><?php echo $row->{"title"}; ?></h3>
+			            <h4><a href="<?php echo $row->{"url"}; ?>" target="_blank"><?php echo $row->{"url"}; ?></a></h4>
+			        </div>
+			    <?php
+				}
+			    ?>
 
-              </div>
+			  </div>
 
 
-            </div>
 			</div>
+			</div> 
+			##
+			#	Commerce end
+			##
+			-->
 			
 			<div class="row">
             <div class="clearer"></div>

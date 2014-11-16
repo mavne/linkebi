@@ -65,7 +65,7 @@
                                 <input type="text" name="catname" class="form-control" value="" />
                             </div>
                             <div class="form-group">
-                                <label>იკონკა:</label>
+                                <label>იკონკა: <a href="http://fontawesome.io/icons/#web-application" target="_blank">აირჩიე იკონკა</a></label>
                                 <input type="text" name="icon" class="form-control" value="" />
                             </div>
                             <div class="form-group">

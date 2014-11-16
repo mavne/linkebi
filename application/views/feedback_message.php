@@ -49,7 +49,7 @@
 
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 links-contact-info">
 				<h3>საკონტაქტო ინფორმაცია</h3>
-				<p><b>ელ-ფოსტა:</b> <a href="mailto:info.404.ge">info.404.ge</a></p>
+				<p><b>ელ-ფოსტა:</b> <a href="mailto:info@404.ge" target="_blank">info@404.ge</a></p>
 				<p><b>მობ:</b> 599 62 35 55</p>
 			</div>
 

@@ -194,6 +194,10 @@ class ci_admin extends CI_Controller
 				}
 				$viewpage = "ciadmin_websites_edit";
 				break;
+				default:
+				$viewpage = "ciadmin_websites";
+				$allowedx = "x";
+				break;
 			}
 			// load categories
 			$pageForPagination = (!empty($data['cur_url'][7])) ? $data['cur_url'][7] : 1;
@@ -247,6 +251,56 @@ class ci_admin extends CI_Controller
 
 		// load view page
 		$this->load->view('ci_edit_website', $data);
+	}
+
+
+	public function webusers($type="all")
+	{
+		// session
+		$data["session_id"] = $this->session->userdata('session_id');
+		$data["ip_address"] = $this->session->userdata('ip_address');
+		$data["user_agent"] = $this->session->userdata('user_agent');
+		$data["last_activity"] = $this->session->userdata('last_activity');
+
+		if($this->session->userdata('cms_username'))
+		{
+			// user
+			$data["cms_username"] = $this->session->userdata('cms_username');
+			// current url 
+			$this->load->model("md_current_url");
+			$data['cur_url'] = $this->md_current_url->getUrl();
+			//load css
+			$data["css"] = $this->getcss(true);
+			//load js
+			$data["getjs"] = $this->getjs(true);
+			//post
+			if(isset($_POST["form_type"]))
+			{
+				$this->load->model("md_form");
+				$data["message"] = $this->md_form->formValidation();
+			}
+			// load redirect	
+			$this->load->model("md_redir");	
+			// load proper view
+			switch($type)
+			{
+				case "all":
+				$viewpage = "ciadmin_websiteusers";
+				break;
+			}
+			// load categories
+			$pageForPagination = (!empty($data['cur_url'][7])) ? $data['cur_url'][7] : 1;
+			$this->load->model("md_website_user_list");
+			$data["website_users"] = $this->md_website_user_list->getall("*",'/ci_admin/webusers/'.$type.'/pn/',10,$pageForPagination,"ORDER BY `registration_time` DESC");
+			
+			// load view page
+			$this->load->view($viewpage, $data);
+		}
+		else
+		{
+			$this->load->model("md_redir");
+			$this->md_redir->gotourl("/ci_admin");
+		}
 	}
 
 	public function getcss($user = false)

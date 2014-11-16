@@ -10,28 +10,13 @@
                      <li <?php echo ($cur_url[4]=="websites") ? 'class="active"' : ''?>>
                         <a href="/ci_admin/websites"><i class="fa fa-fw fa-chain"></i> ვებ გვერდები</a>
                     </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#commerce"><i class="fa fa-fw fa-file-text"></i> რეკლამა</a>
-                        <ul id="commerce" class="collapse">
-                            <li>
-                                <a href="#">მაგიდა</a>
-                            </li>
-                             <li>
-                                <a href="#">რეკლამის დამატება</a>
-                            </li>
-                        </ul>
+                    <li <?php echo ($cur_url[4]=="webusers") ? 'class="active"' : ''?>>
+                        <a href="/ci_admin/webusers"><i class="fa fa-fw fa-users"></i> მომხმარებელი</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#users"><i class="fa fa-fw fa-users"></i> მომხმარებელი</a>
-                        <ul id="users" class="collapse">
-                            <li>
-                                <a href="#">მაგიდა</a>
-                            </li>
-                             <li>
-                                <a href="#">დაბლოკილი მომხმარებლები</a>
-                            </li>
-                        </ul>
+                        <a href="javascript:;"><i class="fa fa-fw fa-file-text"></i> რეკლამა</a>
                     </li>
+                    
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#cont"><i class="fa fa-fw fa-envelope"></i> კონტაქტი</a>
                         <ul id="cont" class="collapse">
