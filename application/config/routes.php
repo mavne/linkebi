@@ -41,6 +41,9 @@
 $route['default_controller'] = "home";
 $route['404_override'] = 'error';
 
+$route['categories/([a-zA-Z0-9]+)'] = "categories/show_view/$1";
+$route['ci_admin/websites/edit/([0-9]+)'] = "ci_admin/editWevsite/$1";
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

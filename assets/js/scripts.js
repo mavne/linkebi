@@ -1,6 +1,8 @@
+$(function() {
+    $( ".links-column .thumbnail" ).tooltip();
+});
+
 $(document).ready(function(){
-
-
 
 
 	$("#search-key").focus(function(){
@@ -153,5 +155,3 @@ $(document).ready(function(){
 	});
 
 });
-
-

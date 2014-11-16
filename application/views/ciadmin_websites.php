@@ -43,9 +43,9 @@
                     
                     <div class="col-lg-12">
                      <p>
-                     <a href="/ci_admin/websites/add" class="btn btn-primary btn-md" role="button">დამატება</a>
+                     <a href="/addwebsite" class="btn btn-primary btn-md" role="button" target="_blank">დამატება</a>
                       <a href="/ci_admin/websites" class="btn btn-default btn-md" role="button">ყველა</a>
-                     <a href="/ci_admin/websites/allowed" class="btn btn-success btn-md" role="button">ნება დართული</a>
+                     <a href="/ci_admin/websites/alloweds" class="btn btn-success btn-md" role="button">ნება დართული</a>
                      <a href="/ci_admin/websites/disallowed" class="btn btn-danger btn-md" role="button">ნებართვის გარეშე</a>
                       </p>
                         <div class="panel panel-default">
@@ -62,7 +62,7 @@
                                                 <th>მოქმედება</th>
                                             </tr>
                                         </thead>
-                                        <?php echo $websites[0]; ?>
+                                        <?php echo (!empty($websites[0])) ? $websites[0] : ""; ?>
                                     </table>
 
                             </div>

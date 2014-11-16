@@ -22,6 +22,7 @@
 	<link href="assets/css/bootstrap.css" rel="stylesheet" media="screen">
 	<link href="assets/css/general.css" rel="stylesheet" media="screen">
 	<link href="assets/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 </head>
 <body>
 <script>

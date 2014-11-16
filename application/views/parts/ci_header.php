@@ -1,13 +1,15 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ka">
 <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="სტუდია 404 ადმინ პანელი">
+    <meta name="author" content="სტუდია 404">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
     <base href="http://links.404.ge" />
     <title>LINKEBI - ადმინ პანელი</title>
     <link rel="icon" href="http://links.404.ge/assets/img/favicon.gif">

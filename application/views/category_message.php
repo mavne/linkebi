@@ -36,10 +36,10 @@
 					$star_class = ($row->{"w_favourite"}) ? ' active' : '';
 				?>
 					<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 links-column" data-goto="<?php echo $row->{"w_url"}; ?>" data-wi="<?php echo $row->{"w_id"};?>">
-						<div class="thumbnail links-position-relative">
+						<div class="thumbnail links-position-relative" title="<?php echo $row->{"w_name"}; ?>">
 							<div class="star<?php echo $star_class; ?>" data-addfavourite="<?php echo $row->{"w_id"};?>" data-tokenHash=""><i class="fa fa-star"></i></div>
 							<div class="website-logo">
-								<img src="<?php echo $row->{"w_img"}; ?>" alt="<?php echo $row->{"w_name"}; ?>" title="<?php echo $row->{"w_name"}; ?>" />
+								<img src="<?php echo $row->{"w_img"}; ?>" alt="<?php echo $row->{"w_name"}; ?>" />
 							</div>
 							<div class="datas">
 								<p class="info">

@@ -17,7 +17,7 @@
 			<!-- Default panel contents -->
 				<div class="panel-heading">ძიება</div>
 				<div class="panel-body">
-				<p>საკვანძო სიტყვა: <?php echo $url[5]; ?> (<?php echo count($searchResult); ?>)</p>
+				<p>საკვანძო სიტყვა: <?php echo urldecode($url[5]); ?> (<?php echo count($searchResult); ?>)</p>
 				</div>
 
 				<table class="table">

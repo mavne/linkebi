@@ -180,12 +180,9 @@ class ci_admin extends CI_Controller
 				$viewpage = "ciadmin_websites";
 				$allowedx = "0";
 				break;
-				case "allowed":
+				case "alloweds":
 				$viewpage = "ciadmin_websites";
 				$allowedx = "1";
-				break;
-				case "add":
-				$viewpage = "ciadmin_websites_add";
 				break;
 				case "permition":
 				//$this->delete_query();
@@ -195,8 +192,6 @@ class ci_admin extends CI_Controller
 				if(!$edit_id){
 					$this->md_redir->gotourl("/error"); 
 				}
-				// $this->load->model("md_categories");
-				// $data["category"] = $this->md_categories->cats(false,false,$edit_id);
 				$viewpage = "ciadmin_websites_edit";
 				break;
 			}
@@ -204,6 +199,7 @@ class ci_admin extends CI_Controller
 			$pageForPagination = (!empty($data['cur_url'][7])) ? $data['cur_url'][7] : 1;
 			$this->load->model("md_website_lists");
 			$data["websites"] = $this->md_website_lists->getall("*", $allowedx,'/ci_admin/websites/'.$type.'/pn/',10,$pageForPagination,"ORDER BY `id` DESC");
+			
 			// load view page
 			$this->load->view($viewpage, $data);
 		}
@@ -212,6 +208,45 @@ class ci_admin extends CI_Controller
 			$this->load->model("md_redir");
 			$this->md_redir->gotourl("/ci_admin");
 		}
+	}
+
+	public function editWevsite($id)
+	{
+		// session
+		$data["session_id"] = $this->session->userdata('session_id');
+		$data["ip_address"] = $this->session->userdata('ip_address');
+		$data["user_agent"] = $this->session->userdata('user_agent');
+		$data["last_activity"] = $this->session->userdata('last_activity');
+		$data["username"] = $this->session->userdata('username');
+		// current url 
+		$this->load->model("md_current_url");
+		$data['cur_url'] = $this->md_current_url->getUrl();
+		// edit website
+		if(isset($_POST["form_type"])){
+			$this->load->model("md_form");
+			$data["message"] = $this->md_form->formValidation();
+		}
+
+
+		// load title
+		$this->load->model("md_title");
+		$data["title"] = $this->md_title->getTitle();
+		// load breadcraps
+		$this->load->model("md_breadcraps");
+		$data["breadcrups"] = $this->md_breadcraps->bread();
+		// load navigation 
+		$this->load->model("md_navigation");
+		$data["nav"] = $this->md_navigation->nav();
+		// load website data
+		$this->load->model("md_website_lists");
+		$data["web"] = $this->md_website_lists->web($id);
+
+		// get categories
+		$this->load->model("md_categories");
+		$data["categories"] = $this->md_categories->cats(false, false);
+
+		// load view page
+		$this->load->view('ci_edit_website', $data);
 	}
 
 	public function getcss($user = false)

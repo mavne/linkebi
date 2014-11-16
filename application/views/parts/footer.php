@@ -10,6 +10,7 @@
 
 
 <script src="assets/js/jquery-1.11.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/scripts.js"></script>
 <script src="assets/js/owl.carousel.min.js"></script>

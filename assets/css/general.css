@@ -783,6 +783,8 @@ table{
 	top: 50%;
 	margin-top: -11px;
 }
+.tooltip-arrow{ border-top-color:#23204d !important; }
+.tooltip-inner{ padding:5px 10px; background:#23204d !important; }
 
 @media screen and (max-width: 1260px) {
 	.links-top .container .links-mask .links-head .row{
